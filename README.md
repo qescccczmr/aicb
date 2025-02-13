@@ -11,8 +11,6 @@ python
 num_params = total_params  # Total parameters in the model
 num_bytes_per_param = 6 + (12 / data_parallel_size) if use_distributed_optimizer else 18  # Memory per parameter, adjusting for distributed optimizer
 weight_memory = num_params * num_bytes_per_param  # Total weight memory
-
-复制
 ```
 
 ### 2. **Activation Memory Calculation**
