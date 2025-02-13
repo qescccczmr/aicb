@@ -1,4 +1,24 @@
 # Access AICB
+To add memory calculation during the model training stage and separate it into two categories: **weight and optimizer memory** and **activation memory**
+
+### 1. **Weight and Optimizer Memory Calculation**
+
+This memory refers to the space required for storing the model's parameters and optimizer states. The formula for calculating memory for model weights is:
+
+```
+python
+# Memory for weights in bytes
+num_params = total_params  # Total parameters in the model
+num_bytes_per_param = 6 + (12 / data_parallel_size) if use_distributed_optimizer else 18  # Memory per parameter, adjusting for distributed optimizer
+weight_memory = num_params * num_bytes_per_param  # Total weight memory
+
+复制
+```
+
+### 2. **Activation Memory Calculation**
+
+Activation memory is the memory required for storing activations (outputs of each layer) during the forward and backward passes.
+
 You can access the full suite of **SimAI** tools on **GitHub** via  [**SimAI@github**](https://github.com/aliyun/SimAI)
 
 You can access AICB on **GitHub** via  [**AICB@github**](https://github.com/aliyun/aicb)
