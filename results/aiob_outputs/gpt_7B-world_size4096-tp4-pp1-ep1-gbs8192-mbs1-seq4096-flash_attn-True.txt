@@ -1,0 +1,49 @@
+train_iter:1
+Emb:
+    time_gpu_max: 69868.22509765625
+    time_gpu_min: 69868.22509765625
+    time_gpu_avg: 69868.22509765625
+layernorm:
+    time_gpu_max: 49.0880012512207
+    time_gpu_min: 42.080000042915344
+    time_gpu_avg: 46.24000042676926
+atten_qkv:
+    time_gpu_max: 511.74402236938477
+    time_gpu_min: 414.94399309158325
+    time_gpu_avg: 500.32365322113037
+atten_flash:
+    time_gpu_max: 358.240008354187
+    time_gpu_min: 281.6320061683655
+    time_gpu_avg: 343.8317724636623
+atten_linear:
+    time_gpu_max: 189.66400623321533
+    time_gpu_min: 153.79199385643005
+    time_gpu_avg: 185.24708577564783
+layernorm2:
+    time_gpu_max: 79.0719985961914
+    time_gpu_min: 47.87199944257736
+    time_gpu_avg: 50.01244455989864
+mlp_linear_1:
+    time_gpu_max: 885.3440284729004
+    time_gpu_min: 717.1519994735718
+    time_gpu_avg: 867.0924454927444
+mlp_gelu:
+    time_gpu_max: 151.16800367832184
+    time_gpu_min: 116.48000031709671
+    time_gpu_avg: 133.14468541315622
+mlp_linear_2:
+    time_gpu_max: 440.2239918708801
+    time_gpu_min: 357.7600121498108
+    time_gpu_avg: 429.5342225167486
+layernorm_post:
+    time_gpu_max: 80.64000308513641
+    time_gpu_min: 80.64000308513641
+    time_gpu_avg: 80.64000308513641
+logit_time:
+    time_gpu_max: 1598.2400178909302
+    time_gpu_min: 1598.2400178909302
+    time_gpu_avg: 1598.2400178909302
+param_time:
+    time_gpu_max: 8549.407958984375
+    time_gpu_min: 8549.407958984375
+    time_gpu_avg: 8549.407958984375

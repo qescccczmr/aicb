@@ -1,0 +1,6 @@
+comm_type,comm_group,comm_group_size,msg_size,stage,dst,src,additional,_elapsed_time,algbw,busbw,count
+CommType.all_reduce,CommGroup.tp_group,4,33554432,forward.MegatronEmbedding,None,None,,None,None,None,1
+CommType.all_gather,CommGroup.tp_group,4,33554432,forward.MegatronColumnLinear,None,None,,None,None,None,1
+CommType.reduce_scatter,CommGroup.tp_group,4,33554432,forward.MegatronRowLinear,None,None,,None,None,None,1
+CommType.all_gather,CommGroup.tp_group,4,33554432,forward.MegatronColumnLinear,None,None,,None,None,None,1
+CommType.reduce_scatter,CommGroup.tp_group,4,33554432,forward.MegatronRowLinear,None,None,,None,None,None,1

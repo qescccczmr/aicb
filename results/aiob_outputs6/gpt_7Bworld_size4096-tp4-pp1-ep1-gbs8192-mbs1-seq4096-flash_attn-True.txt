@@ -1,0 +1,95 @@
+train_iter:1
+{
+    "Emb": [
+        {
+            "time_gpu": 73765.37322998047,
+            "embedding weight_and_optimizer_memory": 1782.0,
+            "embedding activation_memory": 216.32421875,
+            "embedding report_theoretical_memory": 1998.32421875
+        }
+    ],
+    "layernorm atten": [
+        {
+            "time_gpu": 3060.1279735565186,
+            "layernorm  weight_and_optimizer_memory": 0.03515625,
+            "layernorm activation_memory": 16.0,
+            "report_theoretical_memory_layernorm": 16.03515625
+        },
+        {
+            "time_gpu": 44.863998889923096,
+            "layernorm  weight_and_optimizer_memory": 0.03515625,
+            "layernorm activation_memory": 16.0,
+            "report_theoretical_memory_layernorm": 16.03515625
+        }
+    ],
+    "flash atten": [
+        {
+            "time_gpu_all": 69899.7758179903,
+            "time_gpu_atten_qkv": 66065.05584716797,
+            "time_gpu_atten_core": 3644.6399688720703,
+            "time_gpu_atten_linear": 190.08000195026398
+        },
+        {
+            "time_gpu_all": 1059.0079873800278,
+            "time_gpu_atten_qkv": 511.1039876937866,
+            "time_gpu_atten_core": 358.5599958896637,
+            "time_gpu_atten_linear": 189.34400379657745
+        }
+    ],
+    "Layernorm mlp": [
+        {
+            "time_gpu_all": 49.60000142455101,
+            "time_gpu_laynorm": 49.60000142455101,
+            "Layernorm mlp weight_and_optimizer_memory": 0.03515625,
+            "Layernorm mlp activation_memory": 16.0,
+            "report_theoretical_memory_Layernorm mlp": 16.03515625
+        },
+        {
+            "time_gpu_all": 50.87999999523163,
+            "time_gpu_laynorm": 50.87999999523163,
+            "Layernorm mlp weight_and_optimizer_memory": 0.03515625,
+            "Layernorm mlp activation_memory": 16.0,
+            "report_theoretical_memory_Layernorm mlp": 16.03515625
+        }
+    ],
+    "mlp": [
+        {
+            "time_gpu_all": 11771.423697471619,
+            "time_gpu_mlp_linear_1": 884.6399784088135,
+            "time_gpu_mlp_gelu": 10447.263717651367,
+            "time_gpu_mlp_linear_2": 439.520001411438,
+            "mlp weight_and_optimizer_memory": 12134.84765625,
+            "mlp activation_memory": 684.0,
+            "report_theoretical_memory_mlp": 12818.84765625
+        },
+        {
+            "time_gpu_all": 1464.0640169382095,
+            "time_gpu_mlp_linear_1": 884.0320110321045,
+            "time_gpu_mlp_gelu": 139.96799290180206,
+            "time_gpu_mlp_linear_2": 440.064013004303,
+            "mlp weight_and_optimizer_memory": 12134.84765625,
+            "mlp activation_memory": 684.0,
+            "report_theoretical_memory_mlp": 12818.84765625
+        }
+    ],
+    "laynorm post": [
+        {
+            "time_gpu_all": 49.56800118088722,
+            "time_gpu_layernorm_post": 49.56800118088722,
+            "layernorm_post weight_and_optimizer_memory": 12134.84765625,
+            "layernorm_post activation_memory": 16.0,
+            "report_theoretical_memory_layernorm_post": 16.03515625
+        }
+    ],
+    "logit_time": [
+        {
+            "time_gpu_logit_time": 1884.384036064148
+        }
+    ],
+    "param_time": [
+        {
+            "time_gpu_param_time": 9019.424438476562
+        }
+    ]
+} ]
+}

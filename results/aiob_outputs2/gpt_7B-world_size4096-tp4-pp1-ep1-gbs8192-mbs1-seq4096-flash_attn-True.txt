@@ -1,0 +1,21 @@
+train_iter:1
+Emb:
+    time_gpu: 72594.42901611328
+layernorm atten:
+    time_gpu: 44.79999840259552
+atten_qkv:
+    time_gpu: 511.03997230529785
+atten_flash:
+    time_gpu: 1600.8319854736328
+atten_linear:
+    time_gpu: 192.671999335289
+Layernorm mlp:
+    time_gpu_all: 48.128001391887665
+mlp:
+    time_gpu_all: 1458.8479548692703
+laynorm post:
+    time_gpu_all: 90.33600240945816
+logit_time:
+    time_gpu: 1965.2479887008667
+param_time:
+    time_gpu: 8812.864303588867

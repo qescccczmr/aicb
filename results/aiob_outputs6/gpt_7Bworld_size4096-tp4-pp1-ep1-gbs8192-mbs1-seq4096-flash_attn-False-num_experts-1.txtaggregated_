@@ -1,0 +1,55 @@
+train_iter:1
+{
+    "Emb": {
+        "time_gpu_sum": 78877.92205810547,
+        "embedding weight_and_optimizer_memory_sum": 1782.0,
+        "embedding activation_memory_sum": 216.32421875,
+        "embedding report_theoretical_memory_sum": 1998.32421875
+    },
+    "layernorm atten": {
+        "time_gpu_sum": 6896.287836134434,
+        "layernorm  weight_and_optimizer_memory_sum": 1.40625,
+        "layernorm activation_memory_sum": 640.0,
+        "report_theoretical_memory_layernorm_sum": 641.40625
+    },
+    "atten": {
+        "time_gpu_all_sum": 191664.127856493,
+        "time_gpu_atten_qkv_sum": 92290.94412922859,
+        "time_gpu_atten_core_qk_sum": 15751.040041446686,
+        "time_gpu_atten_core_softmax_sum": 67301.53560638428,
+        "time_gpu_atten_core_contex_sum": 9554.495990276337,
+        "time_gpu_atten_linear_sum": 6766.1120891571045,
+        "atten weight_and_optimizer_memory_sum": 531473.90625,
+        "atten activation_memory_sum": 27360.0,
+        "report_theoretical_memory_atten_sum": 558833.90625
+    },
+    "Layernorm mlp": {
+        "time_gpu_all_sum": 2210.3040106594563,
+        "time_gpu_laynorm_sum": 2210.3040106594563,
+        "Layernorm mlp weight_and_optimizer_memory_sum": 1.40625,
+        "Layernorm mlp activation_memory_sum": 640.0,
+        "report_theoretical_memory_Layernorm mlp_sum": 641.40625
+    },
+    "mlp": {
+        "time_gpu_all_sum": 54781.503804028034,
+        "time_gpu_mlp_linear_1_sum": 30038.783848285675,
+        "time_gpu_mlp_gelu_sum": 9534.847982227802,
+        "time_gpu_mlp_linear_2_sum": 15207.871973514557,
+        "mlp weight_and_optimizer_memory_sum": 531473.90625,
+        "mlp activation_memory_sum": 27360.0,
+        "report_theoretical_memory_mlp_sum": 558833.90625
+    },
+    "laynorm post": {
+        "time_gpu_all_sum": 70.8480030298233,
+        "time_gpu_layernorm_post_sum": 70.8480030298233,
+        "layernorm_post weight_and_optimizer_memory_sum": 13286.84765625,
+        "layernorm_post activation_memory_sum": 16.0,
+        "report_theoretical_memory_layernorm_post_sum": 16.03515625
+    },
+    "logit_time": {
+        "time_gpu_logit_time_sum": 1595.2320098876953
+    },
+    "param_time": {
+        "time_gpu_param_time_sum": 7440.959930419922
+    }
+}

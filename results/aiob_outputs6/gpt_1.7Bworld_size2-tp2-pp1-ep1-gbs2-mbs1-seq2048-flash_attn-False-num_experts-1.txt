@@ -1,0 +1,1358 @@
+train_iter:1
+{
+    "Emb": [
+        {
+            "time_gpu": 178.1120002269745,
+            "embedding weight_and_optimizer_memory": 1773.0,
+            "embedding activation_memory": 206.32421875,
+            "embedding report_theoretical_memory": 1979.32421875
+        }
+    ],
+    "layernorm atten": [
+        {
+            "time_gpu": 150.56000649929047,
+            "layernorm  weight_and_optimizer_memory": 0.03515625,
+            "layernorm activation_memory": 8.0,
+            "report_theoretical_memory_layernorm": 8.03515625
+        },
+        {
+            "time_gpu": 77.85599678754807,
+            "layernorm  weight_and_optimizer_memory": 0.03515625,
+            "layernorm activation_memory": 8.0,
+            "report_theoretical_memory_layernorm": 8.03515625
+        },
+        {
+            "time_gpu": 62.880001962184906,
+            "layernorm  weight_and_optimizer_memory": 0.03515625,
+            "layernorm activation_memory": 8.0,
+            "report_theoretical_memory_layernorm": 8.03515625
+        },
+        {
+            "time_gpu": 57.760000228881836,
+            "layernorm  weight_and_optimizer_memory": 0.03515625,
+            "layernorm activation_memory": 8.0,
+            "report_theoretical_memory_layernorm": 8.03515625
+        },
+        {
+            "time_gpu": 56.48000165820122,
+            "layernorm  weight_and_optimizer_memory": 0.03515625,
+            "layernorm activation_memory": 8.0,
+            "report_theoretical_memory_layernorm": 8.03515625
+        },
+        {
+            "time_gpu": 57.37600103020668,
+            "layernorm  weight_and_optimizer_memory": 0.03515625,
+            "layernorm activation_memory": 8.0,
+            "report_theoretical_memory_layernorm": 8.03515625
+        },
+        {
+            "time_gpu": 57.82400071620941,
+            "layernorm  weight_and_optimizer_memory": 0.03515625,
+            "layernorm activation_memory": 8.0,
+            "report_theoretical_memory_layernorm": 8.03515625
+        },
+        {
+            "time_gpu": 55.71199953556061,
+            "layernorm  weight_and_optimizer_memory": 0.03515625,
+            "layernorm activation_memory": 8.0,
+            "report_theoretical_memory_layernorm": 8.03515625
+        },
+        {
+            "time_gpu": 59.61599946022034,
+            "layernorm  weight_and_optimizer_memory": 0.03515625,
+            "layernorm activation_memory": 8.0,
+            "report_theoretical_memory_layernorm": 8.03515625
+        },
+        {
+            "time_gpu": 54.687999188899994,
+            "layernorm  weight_and_optimizer_memory": 0.03515625,
+            "layernorm activation_memory": 8.0,
+            "report_theoretical_memory_layernorm": 8.03515625
+        },
+        {
+            "time_gpu": 58.079998940229416,
+            "layernorm  weight_and_optimizer_memory": 0.03515625,
+            "layernorm activation_memory": 8.0,
+            "report_theoretical_memory_layernorm": 8.03515625
+        },
+        {
+            "time_gpu": 57.69599974155426,
+            "layernorm  weight_and_optimizer_memory": 0.03515625,
+            "layernorm activation_memory": 8.0,
+            "report_theoretical_memory_layernorm": 8.03515625
+        },
+        {
+            "time_gpu": 66.56000018119812,
+            "layernorm  weight_and_optimizer_memory": 0.03515625,
+            "layernorm activation_memory": 8.0,
+            "report_theoretical_memory_layernorm": 8.03515625
+        },
+        {
+            "time_gpu": 54.75199967622757,
+            "layernorm  weight_and_optimizer_memory": 0.03515625,
+            "layernorm activation_memory": 8.0,
+            "report_theoretical_memory_layernorm": 8.03515625
+        },
+        {
+            "time_gpu": 55.00800162553787,
+            "layernorm  weight_and_optimizer_memory": 0.03515625,
+            "layernorm activation_memory": 8.0,
+            "report_theoretical_memory_layernorm": 8.03515625
+        },
+        {
+            "time_gpu": 57.920001447200775,
+            "layernorm  weight_and_optimizer_memory": 0.03515625,
+            "layernorm activation_memory": 8.0,
+            "report_theoretical_memory_layernorm": 8.03515625
+        },
+        {
+            "time_gpu": 57.69599974155426,
+            "layernorm  weight_and_optimizer_memory": 0.03515625,
+            "layernorm activation_memory": 8.0,
+            "report_theoretical_memory_layernorm": 8.03515625
+        },
+        {
+            "time_gpu": 56.92800134420395,
+            "layernorm  weight_and_optimizer_memory": 0.03515625,
+            "layernorm activation_memory": 8.0,
+            "report_theoretical_memory_layernorm": 8.03515625
+        },
+        {
+            "time_gpu": 57.72799998521805,
+            "layernorm  weight_and_optimizer_memory": 0.03515625,
+            "layernorm activation_memory": 8.0,
+            "report_theoretical_memory_layernorm": 8.03515625
+        },
+        {
+            "time_gpu": 56.15999922156334,
+            "layernorm  weight_and_optimizer_memory": 0.03515625,
+            "layernorm activation_memory": 8.0,
+            "report_theoretical_memory_layernorm": 8.03515625
+        },
+        {
+            "time_gpu": 58.04799869656563,
+            "layernorm  weight_and_optimizer_memory": 0.03515625,
+            "layernorm activation_memory": 8.0,
+            "report_theoretical_memory_layernorm": 8.03515625
+        },
+        {
+            "time_gpu": 68.1919977068901,
+            "layernorm  weight_and_optimizer_memory": 0.03515625,
+            "layernorm activation_memory": 8.0,
+            "report_theoretical_memory_layernorm": 8.03515625
+        },
+        {
+            "time_gpu": 57.95200169086456,
+            "layernorm  weight_and_optimizer_memory": 0.03515625,
+            "layernorm activation_memory": 8.0,
+            "report_theoretical_memory_layernorm": 8.03515625
+        },
+        {
+            "time_gpu": 55.16799911856651,
+            "layernorm  weight_and_optimizer_memory": 0.03515625,
+            "layernorm activation_memory": 8.0,
+            "report_theoretical_memory_layernorm": 8.03515625
+        },
+        {
+            "time_gpu": 57.56799876689911,
+            "layernorm  weight_and_optimizer_memory": 0.03515625,
+            "layernorm activation_memory": 8.0,
+            "report_theoretical_memory_layernorm": 8.03515625
+        },
+        {
+            "time_gpu": 57.72799998521805,
+            "layernorm  weight_and_optimizer_memory": 0.03515625,
+            "layernorm activation_memory": 8.0,
+            "report_theoretical_memory_layernorm": 8.03515625
+        },
+        {
+            "time_gpu": 56.352000683546066,
+            "layernorm  weight_and_optimizer_memory": 0.03515625,
+            "layernorm activation_memory": 8.0,
+            "report_theoretical_memory_layernorm": 8.03515625
+        },
+        {
+            "time_gpu": 55.67999929189682,
+            "layernorm  weight_and_optimizer_memory": 0.03515625,
+            "layernorm activation_memory": 8.0,
+            "report_theoretical_memory_layernorm": 8.03515625
+        },
+        {
+            "time_gpu": 53.82400006055832,
+            "layernorm  weight_and_optimizer_memory": 0.03515625,
+            "layernorm activation_memory": 8.0,
+            "report_theoretical_memory_layernorm": 8.03515625
+        },
+        {
+            "time_gpu": 54.496001452207565,
+            "layernorm  weight_and_optimizer_memory": 0.03515625,
+            "layernorm activation_memory": 8.0,
+            "report_theoretical_memory_layernorm": 8.03515625
+        },
+        {
+            "time_gpu": 55.424001067876816,
+            "layernorm  weight_and_optimizer_memory": 0.03515625,
+            "layernorm activation_memory": 8.0,
+            "report_theoretical_memory_layernorm": 8.03515625
+        },
+        {
+            "time_gpu": 59.487998485565186,
+            "layernorm  weight_and_optimizer_memory": 0.03515625,
+            "layernorm activation_memory": 8.0,
+            "report_theoretical_memory_layernorm": 8.03515625
+        },
+        {
+            "time_gpu": 58.62399935722351,
+            "layernorm  weight_and_optimizer_memory": 0.03515625,
+            "layernorm activation_memory": 8.0,
+            "report_theoretical_memory_layernorm": 8.03515625
+        },
+        {
+            "time_gpu": 55.52000179886818,
+            "layernorm  weight_and_optimizer_memory": 0.03515625,
+            "layernorm activation_memory": 8.0,
+            "report_theoretical_memory_layernorm": 8.03515625
+        },
+        {
+            "time_gpu": 54.71999943256378,
+            "layernorm  weight_and_optimizer_memory": 0.03515625,
+            "layernorm activation_memory": 8.0,
+            "report_theoretical_memory_layernorm": 8.03515625
+        },
+        {
+            "time_gpu": 55.16799911856651,
+            "layernorm  weight_and_optimizer_memory": 0.03515625,
+            "layernorm activation_memory": 8.0,
+            "report_theoretical_memory_layernorm": 8.03515625
+        },
+        {
+            "time_gpu": 59.42400172352791,
+            "layernorm  weight_and_optimizer_memory": 0.03515625,
+            "layernorm activation_memory": 8.0,
+            "report_theoretical_memory_layernorm": 8.03515625
+        },
+        {
+            "time_gpu": 56.51199817657471,
+            "layernorm  weight_and_optimizer_memory": 0.03515625,
+            "layernorm activation_memory": 8.0,
+            "report_theoretical_memory_layernorm": 8.03515625
+        },
+        {
+            "time_gpu": 55.64799904823303,
+            "layernorm  weight_and_optimizer_memory": 0.03515625,
+            "layernorm activation_memory": 8.0,
+            "report_theoretical_memory_layernorm": 8.03515625
+        },
+        {
+            "time_gpu": 58.33600088953972,
+            "layernorm  weight_and_optimizer_memory": 0.03515625,
+            "layernorm activation_memory": 8.0,
+            "report_theoretical_memory_layernorm": 8.03515625
+        }
+    ],
+    "atten": [
+        {
+            "time_gpu_all": 4431.199878454208,
+            "time_gpu_atten_qkv": 238.5600060224533,
+            "time_gpu_atten_core_qk": 2866.015911102295,
+            "time_gpu_atten_core_softmax": 1001.7919540405273,
+            "time_gpu_atten_core_contex": 180.03199994564056,
+            "time_gpu_atten_linear": 144.80000734329224,
+            "atten weight_and_optimizer_memory": 5222.84765625,
+            "atten activation_memory": 342.0,
+            "report_theoretical_memory_atten": 5564.84765625
+        },
+        {
+            "time_gpu_all": 1719.8079600930214,
+            "time_gpu_atten_qkv": 165.82399606704712,
+            "time_gpu_atten_core_qk": 296.9599962234497,
+            "time_gpu_atten_core_softmax": 980.7999730110168,
+            "time_gpu_atten_core_contex": 164.15999829769135,
+            "time_gpu_atten_linear": 112.06399649381638,
+            "atten weight_and_optimizer_memory": 5222.84765625,
+            "atten activation_memory": 342.0,
+            "report_theoretical_memory_atten": 5564.84765625
+        },
+        {
+            "time_gpu_all": 1679.0720224380493,
+            "time_gpu_atten_qkv": 161.82400286197662,
+            "time_gpu_atten_core_qk": 283.03998708724976,
+            "time_gpu_atten_core_softmax": 977.3120284080505,
+            "time_gpu_atten_core_contex": 153.02400290966034,
+            "time_gpu_atten_linear": 103.87200117111206,
+            "atten weight_and_optimizer_memory": 5222.84765625,
+            "atten activation_memory": 342.0,
+            "report_theoretical_memory_atten": 5564.84765625
+        },
+        {
+            "time_gpu_all": 1675.967998802662,
+            "time_gpu_atten_qkv": 154.23999726772308,
+            "time_gpu_atten_core_qk": 289.98398780822754,
+            "time_gpu_atten_core_softmax": 978.0160188674927,
+            "time_gpu_atten_core_contex": 151.74399316310883,
+            "time_gpu_atten_linear": 101.98400169610977,
+            "atten weight_and_optimizer_memory": 5222.84765625,
+            "atten activation_memory": 342.0,
+            "report_theoretical_memory_atten": 5564.84765625
+        },
+        {
+            "time_gpu_all": 1663.232035934925,
+            "time_gpu_atten_qkv": 153.28000485897064,
+            "time_gpu_atten_core_qk": 278.56001257896423,
+            "time_gpu_atten_core_softmax": 976.5440225601196,
+            "time_gpu_atten_core_contex": 152.19199657440186,
+            "time_gpu_atten_linear": 102.65599936246872,
+            "atten weight_and_optimizer_memory": 5222.84765625,
+            "atten activation_memory": 342.0,
+            "report_theoretical_memory_atten": 5564.84765625
+        },
+        {
+            "time_gpu_all": 1662.175975739956,
+            "time_gpu_atten_qkv": 153.56799960136414,
+            "time_gpu_atten_core_qk": 278.01600098609924,
+            "time_gpu_atten_core_softmax": 975.6159782409668,
+            "time_gpu_atten_core_contex": 153.6960005760193,
+            "time_gpu_atten_linear": 101.27999633550644,
+            "atten weight_and_optimizer_memory": 5222.84765625,
+            "atten activation_memory": 342.0,
+            "report_theoretical_memory_atten": 5564.84765625
+        },
+        {
+            "time_gpu_all": 1654.0800034999847,
+            "time_gpu_atten_qkv": 153.08800339698792,
+            "time_gpu_atten_core_qk": 278.01600098609924,
+            "time_gpu_atten_core_softmax": 974.2400050163269,
+            "time_gpu_atten_core_contex": 149.08799529075623,
+            "time_gpu_atten_linear": 99.64799880981445,
+            "atten weight_and_optimizer_memory": 5222.84765625,
+            "atten activation_memory": 342.0,
+            "report_theoretical_memory_atten": 5564.84765625
+        },
+        {
+            "time_gpu_all": 1653.7920162081718,
+            "time_gpu_atten_qkv": 153.6960005760193,
+            "time_gpu_atten_core_qk": 278.75199913978577,
+            "time_gpu_atten_core_softmax": 976.7680168151855,
+            "time_gpu_atten_core_contex": 143.90400052070618,
+            "time_gpu_atten_linear": 100.67199915647507,
+            "atten weight_and_optimizer_memory": 5222.84765625,
+            "atten activation_memory": 342.0,
+            "report_theoretical_memory_atten": 5564.84765625
+        },
+        {
+            "time_gpu_all": 1658.7839722633362,
+            "time_gpu_atten_qkv": 152.79999375343323,
+            "time_gpu_atten_core_qk": 279.61599826812744,
+            "time_gpu_atten_core_softmax": 975.9039878845215,
+            "time_gpu_atten_core_contex": 150.87999403476715,
+            "time_gpu_atten_linear": 99.58399832248688,
+            "atten weight_and_optimizer_memory": 5222.84765625,
+            "atten activation_memory": 342.0,
+            "report_theoretical_memory_atten": 5564.84765625
+        },
+        {
+            "time_gpu_all": 1658.1440046429634,
+            "time_gpu_atten_qkv": 152.0320028066635,
+            "time_gpu_atten_core_qk": 277.2800028324127,
+            "time_gpu_atten_core_softmax": 975.6799936294556,
+            "time_gpu_atten_core_contex": 151.96800231933594,
+            "time_gpu_atten_linear": 101.18400305509567,
+            "atten weight_and_optimizer_memory": 5222.84765625,
+            "atten activation_memory": 342.0,
+            "report_theoretical_memory_atten": 5564.84765625
+        },
+        {
+            "time_gpu_all": 1652.2240042686462,
+            "time_gpu_atten_qkv": 152.99199521541595,
+            "time_gpu_atten_core_qk": 277.44001150131226,
+            "time_gpu_atten_core_softmax": 975.2320051193237,
+            "time_gpu_atten_core_contex": 143.93599331378937,
+            "time_gpu_atten_linear": 102.62399911880493,
+            "atten weight_and_optimizer_memory": 5222.84765625,
+            "atten activation_memory": 342.0,
+            "report_theoretical_memory_atten": 5564.84765625
+        },
+        {
+            "time_gpu_all": 1659.7119867801666,
+            "time_gpu_atten_qkv": 155.16799688339233,
+            "time_gpu_atten_core_qk": 277.24799513816833,
+            "time_gpu_atten_core_softmax": 976.4159917831421,
+            "time_gpu_atten_core_contex": 150.56000649929047,
+            "time_gpu_atten_linear": 100.3199964761734,
+            "atten weight_and_optimizer_memory": 5222.84765625,
+            "atten activation_memory": 342.0,
+            "report_theoretical_memory_atten": 5564.84765625
+        },
+        {
+            "time_gpu_all": 1663.1040051579475,
+            "time_gpu_atten_qkv": 154.55999970436096,
+            "time_gpu_atten_core_qk": 278.656005859375,
+            "time_gpu_atten_core_softmax": 974.7520089149475,
+            "time_gpu_atten_core_contex": 152.73599326610565,
+            "time_gpu_atten_linear": 102.39999741315842,
+            "atten weight_and_optimizer_memory": 5222.84765625,
+            "atten activation_memory": 342.0,
+            "report_theoretical_memory_atten": 5564.84765625
+        },
+        {
+            "time_gpu_all": 1658.4320068359375,
+            "time_gpu_atten_qkv": 152.67199277877808,
+            "time_gpu_atten_core_qk": 277.6640057563782,
+            "time_gpu_atten_core_softmax": 976.0000109672546,
+            "time_gpu_atten_core_contex": 151.71200037002563,
+            "time_gpu_atten_linear": 100.38399696350098,
+            "atten weight_and_optimizer_memory": 5222.84765625,
+            "atten activation_memory": 342.0,
+            "report_theoretical_memory_atten": 5564.84765625
+        },
+        {
+            "time_gpu_all": 1660.7040241360664,
+            "time_gpu_atten_qkv": 156.8640023469925,
+            "time_gpu_atten_core_qk": 276.92800760269165,
+            "time_gpu_atten_core_softmax": 975.5200147628784,
+            "time_gpu_atten_core_contex": 150.65599977970123,
+            "time_gpu_atten_linear": 100.73599964380264,
+            "atten weight_and_optimizer_memory": 5222.84765625,
+            "atten activation_memory": 342.0,
+            "report_theoretical_memory_atten": 5564.84765625
+        },
+        {
+            "time_gpu_all": 1658.6240231990814,
+            "time_gpu_atten_qkv": 153.05599570274353,
+            "time_gpu_atten_core_qk": 277.40800380706787,
+            "time_gpu_atten_core_softmax": 976.2560129165649,
+            "time_gpu_atten_core_contex": 149.6960073709488,
+            "time_gpu_atten_linear": 102.20800340175629,
+            "atten weight_and_optimizer_memory": 5222.84765625,
+            "atten activation_memory": 342.0,
+            "report_theoretical_memory_atten": 5564.84765625
+        },
+        {
+            "time_gpu_all": 1657.0879817008972,
+            "time_gpu_atten_qkv": 154.9759954214096,
+            "time_gpu_atten_core_qk": 277.75999903678894,
+            "time_gpu_atten_core_softmax": 974.6559858322144,
+            "time_gpu_atten_core_contex": 149.6639996767044,
+            "time_gpu_atten_linear": 100.03200173377991,
+            "atten weight_and_optimizer_memory": 5222.84765625,
+            "atten activation_memory": 342.0,
+            "report_theoretical_memory_atten": 5564.84765625
+        },
+        {
+            "time_gpu_all": 1668.1279614567757,
+            "time_gpu_atten_qkv": 155.008003115654,
+            "time_gpu_atten_core_qk": 279.9359858036041,
+            "time_gpu_atten_core_softmax": 975.3599762916565,
+            "time_gpu_atten_core_contex": 155.7759940624237,
+            "time_gpu_atten_linear": 102.04800218343735,
+            "atten weight_and_optimizer_memory": 5222.84765625,
+            "atten activation_memory": 342.0,
+            "report_theoretical_memory_atten": 5564.84765625
+        },
+        {
+            "time_gpu_all": 1661.3439992070198,
+            "time_gpu_atten_qkv": 152.67199277877808,
+            "time_gpu_atten_core_qk": 279.7439992427826,
+            "time_gpu_atten_core_softmax": 976.5120148658752,
+            "time_gpu_atten_core_contex": 150.751993060112,
+            "time_gpu_atten_linear": 101.6639992594719,
+            "atten weight_and_optimizer_memory": 5222.84765625,
+            "atten activation_memory": 342.0,
+            "report_theoretical_memory_atten": 5564.84765625
+        },
+        {
+            "time_gpu_all": 1667.7119731903076,
+            "time_gpu_atten_qkv": 153.47200632095337,
+            "time_gpu_atten_core_qk": 277.6319980621338,
+            "time_gpu_atten_core_softmax": 977.5679707527161,
+            "time_gpu_atten_core_contex": 157.47199952602386,
+            "time_gpu_atten_linear": 101.56799852848053,
+            "atten weight_and_optimizer_memory": 5222.84765625,
+            "atten activation_memory": 342.0,
+            "report_theoretical_memory_atten": 5564.84765625
+        },
+        {
+            "time_gpu_all": 1670.9759682416916,
+            "time_gpu_atten_qkv": 155.87200224399567,
+            "time_gpu_atten_core_qk": 277.21598744392395,
+            "time_gpu_atten_core_softmax": 975.8719801902771,
+            "time_gpu_atten_core_contex": 151.13599598407745,
+            "time_gpu_atten_linear": 110.88000237941742,
+            "atten weight_and_optimizer_memory": 5222.84765625,
+            "atten activation_memory": 342.0,
+            "report_theoretical_memory_atten": 5564.84765625
+        },
+        {
+            "time_gpu_all": 1662.143960595131,
+            "time_gpu_atten_qkv": 155.2319973707199,
+            "time_gpu_atten_core_qk": 278.23999524116516,
+            "time_gpu_atten_core_softmax": 974.5919704437256,
+            "time_gpu_atten_core_contex": 152.12799608707428,
+            "time_gpu_atten_linear": 101.95200145244598,
+            "atten weight_and_optimizer_memory": 5222.84765625,
+            "atten activation_memory": 342.0,
+            "report_theoretical_memory_atten": 5564.84765625
+        },
+        {
+            "time_gpu_all": 1659.1359749436378,
+            "time_gpu_atten_qkv": 152.79999375343323,
+            "time_gpu_atten_core_qk": 280.41601181030273,
+            "time_gpu_atten_core_softmax": 975.1039743423462,
+            "time_gpu_atten_core_contex": 151.0079950094223,
+            "time_gpu_atten_linear": 99.80800002813339,
+            "atten weight_and_optimizer_memory": 5222.84765625,
+            "atten activation_memory": 342.0,
+            "report_theoretical_memory_atten": 5564.84765625
+        },
+        {
+            "time_gpu_all": 1665.9520119428635,
+            "time_gpu_atten_qkv": 161.6320013999939,
+            "time_gpu_atten_core_qk": 278.23999524116516,
+            "time_gpu_atten_core_softmax": 976.0000109672546,
+            "time_gpu_atten_core_contex": 149.6960073709488,
+            "time_gpu_atten_linear": 100.38399696350098,
+            "atten weight_and_optimizer_memory": 5222.84765625,
+            "atten activation_memory": 342.0,
+            "report_theoretical_memory_atten": 5564.84765625
+        },
+        {
+            "time_gpu_all": 1675.2960309386253,
+            "time_gpu_atten_qkv": 153.4080058336258,
+            "time_gpu_atten_core_qk": 286.9440019130707,
+            "time_gpu_atten_core_softmax": 975.0720262527466,
+            "time_gpu_atten_core_contex": 155.71199357509613,
+            "time_gpu_atten_linear": 104.16000336408615,
+            "atten weight_and_optimizer_memory": 5222.84765625,
+            "atten activation_memory": 342.0,
+            "report_theoretical_memory_atten": 5564.84765625
+        },
+        {
+            "time_gpu_all": 1658.3039909601212,
+            "time_gpu_atten_qkv": 154.23999726772308,
+            "time_gpu_atten_core_qk": 278.1760096549988,
+            "time_gpu_atten_core_softmax": 975.9039878845215,
+            "time_gpu_atten_core_contex": 148.3519971370697,
+            "time_gpu_atten_linear": 101.6319990158081,
+            "atten weight_and_optimizer_memory": 5222.84765625,
+            "atten activation_memory": 342.0,
+            "report_theoretical_memory_atten": 5564.84765625
+        },
+        {
+            "time_gpu_all": 1653.8560315966606,
+            "time_gpu_atten_qkv": 151.8400013446808,
+            "time_gpu_atten_core_qk": 277.0560085773468,
+            "time_gpu_atten_core_softmax": 975.2960205078125,
+            "time_gpu_atten_core_contex": 149.24800395965576,
+            "time_gpu_atten_linear": 100.41599720716476,
+            "atten weight_and_optimizer_memory": 5222.84765625,
+            "atten activation_memory": 342.0,
+            "report_theoretical_memory_atten": 5564.84765625
+        },
+        {
+            "time_gpu_all": 1658.2720056176186,
+            "time_gpu_atten_qkv": 153.47200632095337,
+            "time_gpu_atten_core_qk": 277.18400955200195,
+            "time_gpu_atten_core_softmax": 976.6719937324524,
+            "time_gpu_atten_core_contex": 151.19999647140503,
+            "time_gpu_atten_linear": 99.74399954080582,
+            "atten weight_and_optimizer_memory": 5222.84765625,
+            "atten activation_memory": 342.0,
+            "report_theoretical_memory_atten": 5564.84765625
+        },
+        {
+            "time_gpu_all": 1659.4239845871925,
+            "time_gpu_atten_qkv": 153.6320000886917,
+            "time_gpu_atten_core_qk": 279.32798862457275,
+            "time_gpu_atten_core_softmax": 975.167989730835,
+            "time_gpu_atten_core_contex": 151.10400319099426,
+            "time_gpu_atten_linear": 100.19200295209885,
+            "atten weight_and_optimizer_memory": 5222.84765625,
+            "atten activation_memory": 342.0,
+            "report_theoretical_memory_atten": 5564.84765625
+        },
+        {
+            "time_gpu_all": 1656.6399931907654,
+            "time_gpu_atten_qkv": 151.36000514030457,
+            "time_gpu_atten_core_qk": 279.1680097579956,
+            "time_gpu_atten_core_softmax": 975.1039743423462,
+            "time_gpu_atten_core_contex": 151.296004652977,
+            "time_gpu_atten_linear": 99.71199929714203,
+            "atten weight_and_optimizer_memory": 5222.84765625,
+            "atten activation_memory": 342.0,
+            "report_theoretical_memory_atten": 5564.84765625
+        },
+        {
+            "time_gpu_all": 1653.5359844565392,
+            "time_gpu_atten_qkv": 151.39199793338776,
+            "time_gpu_atten_core_qk": 276.67200565338135,
+            "time_gpu_atten_core_softmax": 974.8479723930359,
+            "time_gpu_atten_core_contex": 148.3840048313141,
+            "time_gpu_atten_linear": 102.24000364542007,
+            "atten weight_and_optimizer_memory": 5222.84765625,
+            "atten activation_memory": 342.0,
+            "report_theoretical_memory_atten": 5564.84765625
+        },
+        {
+            "time_gpu_all": 1658.6240082979202,
+            "time_gpu_atten_qkv": 154.04799580574036,
+            "time_gpu_atten_core_qk": 278.27200293540955,
+            "time_gpu_atten_core_softmax": 974.9760031700134,
+            "time_gpu_atten_core_contex": 150.2400040626526,
+            "time_gpu_atten_linear": 101.08800232410431,
+            "atten weight_and_optimizer_memory": 5222.84765625,
+            "atten activation_memory": 342.0,
+            "report_theoretical_memory_atten": 5564.84765625
+        },
+        {
+            "time_gpu_all": 1661.3120213150978,
+            "time_gpu_atten_qkv": 155.4879993200302,
+            "time_gpu_atten_core_qk": 277.18400955200195,
+            "time_gpu_atten_core_softmax": 973.7600088119507,
+            "time_gpu_atten_core_contex": 153.888002038002,
+            "time_gpu_atten_linear": 100.99200159311295,
+            "atten weight_and_optimizer_memory": 5222.84765625,
+            "atten activation_memory": 342.0,
+            "report_theoretical_memory_atten": 5564.84765625
+        },
+        {
+            "time_gpu_all": 1665.3119921684265,
+            "time_gpu_atten_qkv": 159.743994474411,
+            "time_gpu_atten_core_qk": 279.6480059623718,
+            "time_gpu_atten_core_softmax": 974.4639992713928,
+            "time_gpu_atten_core_contex": 150.94399452209473,
+            "time_gpu_atten_linear": 100.51199793815613,
+            "atten weight_and_optimizer_memory": 5222.84765625,
+            "atten activation_memory": 342.0,
+            "report_theoretical_memory_atten": 5564.84765625
+        },
+        {
+            "time_gpu_all": 1654.176041483879,
+            "time_gpu_atten_qkv": 152.0320028066635,
+            "time_gpu_atten_core_qk": 278.52800488471985,
+            "time_gpu_atten_core_softmax": 975.8080244064331,
+            "time_gpu_atten_core_contex": 148.6400067806244,
+            "time_gpu_atten_linear": 99.16800260543823,
+            "atten weight_and_optimizer_memory": 5222.84765625,
+            "atten activation_memory": 342.0,
+            "report_theoretical_memory_atten": 5564.84765625
+        },
+        {
+            "time_gpu_all": 1657.248005270958,
+            "time_gpu_atten_qkv": 152.5759994983673,
+            "time_gpu_atten_core_qk": 276.4799892902374,
+            "time_gpu_atten_core_softmax": 976.5120148658752,
+            "time_gpu_atten_core_contex": 150.9760022163391,
+            "time_gpu_atten_linear": 100.70399940013885,
+            "atten weight_and_optimizer_memory": 5222.84765625,
+            "atten activation_memory": 342.0,
+            "report_theoretical_memory_atten": 5564.84765625
+        },
+        {
+            "time_gpu_all": 1653.3760279417038,
+            "time_gpu_atten_qkv": 152.76800096035004,
+            "time_gpu_atten_core_qk": 277.18400955200195,
+            "time_gpu_atten_core_softmax": 974.7840166091919,
+            "time_gpu_atten_core_contex": 147.2640037536621,
+            "time_gpu_atten_linear": 101.3759970664978,
+            "atten weight_and_optimizer_memory": 5222.84765625,
+            "atten activation_memory": 342.0,
+            "report_theoretical_memory_atten": 5564.84765625
+        },
+        {
+            "time_gpu_all": 1660.479985177517,
+            "time_gpu_atten_qkv": 154.9759954214096,
+            "time_gpu_atten_core_qk": 277.2800028324127,
+            "time_gpu_atten_core_softmax": 974.4319915771484,
+            "time_gpu_atten_core_contex": 154.11199629306793,
+            "time_gpu_atten_linear": 99.67999905347824,
+            "atten weight_and_optimizer_memory": 5222.84765625,
+            "atten activation_memory": 342.0,
+            "report_theoretical_memory_atten": 5564.84765625
+        },
+        {
+            "time_gpu_all": 1657.1199744939804,
+            "time_gpu_atten_qkv": 153.47200632095337,
+            "time_gpu_atten_core_qk": 280.0639867782593,
+            "time_gpu_atten_core_softmax": 974.62397813797,
+            "time_gpu_atten_core_contex": 148.67199957370758,
+            "time_gpu_atten_linear": 100.28800368309021,
+            "atten weight_and_optimizer_memory": 5222.84765625,
+            "atten activation_memory": 342.0,
+            "report_theoretical_memory_atten": 5564.84765625
+        },
+        {
+            "time_gpu_all": 1688.9919713139534,
+            "time_gpu_atten_qkv": 153.34400534629822,
+            "time_gpu_atten_core_qk": 289.72798585891724,
+            "time_gpu_atten_core_softmax": 987.5199794769287,
+            "time_gpu_atten_core_contex": 158.1439971923828,
+            "time_gpu_atten_linear": 100.25600343942642,
+            "atten weight_and_optimizer_memory": 5222.84765625,
+            "atten activation_memory": 342.0,
+            "report_theoretical_memory_atten": 5564.84765625
+        }
+    ],
+    "Layernorm mlp": [
+        {
+            "time_gpu_all": 77.44000107049942,
+            "time_gpu_laynorm": 77.44000107049942,
+            "Layernorm mlp weight_and_optimizer_memory": 0.03515625,
+            "Layernorm mlp activation_memory": 8.0,
+            "report_theoretical_memory_Layernorm mlp": 8.03515625
+        },
+        {
+            "time_gpu_all": 73.40800017118454,
+            "time_gpu_laynorm": 73.40800017118454,
+            "Layernorm mlp weight_and_optimizer_memory": 0.03515625,
+            "Layernorm mlp activation_memory": 8.0,
+            "report_theoretical_memory_Layernorm mlp": 8.03515625
+        },
+        {
+            "time_gpu_all": 58.33600088953972,
+            "time_gpu_laynorm": 58.33600088953972,
+            "Layernorm mlp weight_and_optimizer_memory": 0.03515625,
+            "Layernorm mlp activation_memory": 8.0,
+            "report_theoretical_memory_Layernorm mlp": 8.03515625
+        },
+        {
+            "time_gpu_all": 56.92800134420395,
+            "time_gpu_laynorm": 56.92800134420395,
+            "Layernorm mlp weight_and_optimizer_memory": 0.03515625,
+            "Layernorm mlp activation_memory": 8.0,
+            "report_theoretical_memory_Layernorm mlp": 8.03515625
+        },
+        {
+            "time_gpu_all": 56.63999915122986,
+            "time_gpu_laynorm": 56.63999915122986,
+            "Layernorm mlp weight_and_optimizer_memory": 0.03515625,
+            "Layernorm mlp activation_memory": 8.0,
+            "report_theoretical_memory_Layernorm mlp": 8.03515625
+        },
+        {
+            "time_gpu_all": 57.28000029921532,
+            "time_gpu_laynorm": 57.28000029921532,
+            "Layernorm mlp weight_and_optimizer_memory": 0.03515625,
+            "Layernorm mlp activation_memory": 8.0,
+            "report_theoretical_memory_Layernorm mlp": 8.03515625
+        },
+        {
+            "time_gpu_all": 58.43200162053108,
+            "time_gpu_laynorm": 58.43200162053108,
+            "Layernorm mlp weight_and_optimizer_memory": 0.03515625,
+            "Layernorm mlp activation_memory": 8.0,
+            "report_theoretical_memory_Layernorm mlp": 8.03515625
+        },
+        {
+            "time_gpu_all": 57.5999990105629,
+            "time_gpu_laynorm": 57.5999990105629,
+            "Layernorm mlp weight_and_optimizer_memory": 0.03515625,
+            "Layernorm mlp activation_memory": 8.0,
+            "report_theoretical_memory_Layernorm mlp": 8.03515625
+        },
+        {
+            "time_gpu_all": 55.23199960589409,
+            "time_gpu_laynorm": 55.23199960589409,
+            "Layernorm mlp weight_and_optimizer_memory": 0.03515625,
+            "Layernorm mlp activation_memory": 8.0,
+            "report_theoretical_memory_Layernorm mlp": 8.03515625
+        },
+        {
+            "time_gpu_all": 54.496001452207565,
+            "time_gpu_laynorm": 54.496001452207565,
+            "Layernorm mlp weight_and_optimizer_memory": 0.03515625,
+            "Layernorm mlp activation_memory": 8.0,
+            "report_theoretical_memory_Layernorm mlp": 8.03515625
+        },
+        {
+            "time_gpu_all": 61.47199869155884,
+            "time_gpu_laynorm": 61.47199869155884,
+            "Layernorm mlp weight_and_optimizer_memory": 0.03515625,
+            "Layernorm mlp activation_memory": 8.0,
+            "report_theoretical_memory_Layernorm mlp": 8.03515625
+        },
+        {
+            "time_gpu_all": 58.559998869895935,
+            "time_gpu_laynorm": 58.559998869895935,
+            "Layernorm mlp weight_and_optimizer_memory": 0.03515625,
+            "Layernorm mlp activation_memory": 8.0,
+            "report_theoretical_memory_Layernorm mlp": 8.03515625
+        },
+        {
+            "time_gpu_all": 65.2799978852272,
+            "time_gpu_laynorm": 65.2799978852272,
+            "Layernorm mlp weight_and_optimizer_memory": 0.03515625,
+            "Layernorm mlp activation_memory": 8.0,
+            "report_theoretical_memory_Layernorm mlp": 8.03515625
+        },
+        {
+            "time_gpu_all": 54.17599901556969,
+            "time_gpu_laynorm": 54.17599901556969,
+            "Layernorm mlp weight_and_optimizer_memory": 0.03515625,
+            "Layernorm mlp activation_memory": 8.0,
+            "report_theoretical_memory_Layernorm mlp": 8.03515625
+        },
+        {
+            "time_gpu_all": 55.96800148487091,
+            "time_gpu_laynorm": 55.96800148487091,
+            "Layernorm mlp weight_and_optimizer_memory": 0.03515625,
+            "Layernorm mlp activation_memory": 8.0,
+            "report_theoretical_memory_Layernorm mlp": 8.03515625
+        },
+        {
+            "time_gpu_all": 57.440001517534256,
+            "time_gpu_laynorm": 57.440001517534256,
+            "Layernorm mlp weight_and_optimizer_memory": 0.03515625,
+            "Layernorm mlp activation_memory": 8.0,
+            "report_theoretical_memory_Layernorm mlp": 8.03515625
+        },
+        {
+            "time_gpu_all": 56.60799890756607,
+            "time_gpu_laynorm": 56.60799890756607,
+            "Layernorm mlp weight_and_optimizer_memory": 0.03515625,
+            "Layernorm mlp activation_memory": 8.0,
+            "report_theoretical_memory_Layernorm mlp": 8.03515625
+        },
+        {
+            "time_gpu_all": 55.96800148487091,
+            "time_gpu_laynorm": 55.96800148487091,
+            "Layernorm mlp weight_and_optimizer_memory": 0.03515625,
+            "Layernorm mlp activation_memory": 8.0,
+            "report_theoretical_memory_Layernorm mlp": 8.03515625
+        },
+        {
+            "time_gpu_all": 56.32000043988228,
+            "time_gpu_laynorm": 56.32000043988228,
+            "Layernorm mlp weight_and_optimizer_memory": 0.03515625,
+            "Layernorm mlp activation_memory": 8.0,
+            "report_theoretical_memory_Layernorm mlp": 8.03515625
+        },
+        {
+            "time_gpu_all": 56.51199817657471,
+            "time_gpu_laynorm": 56.51199817657471,
+            "Layernorm mlp weight_and_optimizer_memory": 0.03515625,
+            "Layernorm mlp activation_memory": 8.0,
+            "report_theoretical_memory_Layernorm mlp": 8.03515625
+        },
+        {
+            "time_gpu_all": 55.743999779224396,
+            "time_gpu_laynorm": 55.743999779224396,
+            "Layernorm mlp weight_and_optimizer_memory": 0.03515625,
+            "Layernorm mlp activation_memory": 8.0,
+            "report_theoretical_memory_Layernorm mlp": 8.03515625
+        },
+        {
+            "time_gpu_all": 65.47199934720993,
+            "time_gpu_laynorm": 65.47199934720993,
+            "Layernorm mlp weight_and_optimizer_memory": 0.03515625,
+            "Layernorm mlp activation_memory": 8.0,
+            "report_theoretical_memory_Layernorm mlp": 8.03515625
+        },
+        {
+            "time_gpu_all": 56.28800019621849,
+            "time_gpu_laynorm": 56.28800019621849,
+            "Layernorm mlp weight_and_optimizer_memory": 0.03515625,
+            "Layernorm mlp activation_memory": 8.0,
+            "report_theoretical_memory_Layernorm mlp": 8.03515625
+        },
+        {
+            "time_gpu_all": 55.16799911856651,
+            "time_gpu_laynorm": 55.16799911856651,
+            "Layernorm mlp weight_and_optimizer_memory": 0.03515625,
+            "Layernorm mlp activation_memory": 8.0,
+            "report_theoretical_memory_Layernorm mlp": 8.03515625
+        },
+        {
+            "time_gpu_all": 59.167999774217606,
+            "time_gpu_laynorm": 59.167999774217606,
+            "Layernorm mlp weight_and_optimizer_memory": 0.03515625,
+            "Layernorm mlp activation_memory": 8.0,
+            "report_theoretical_memory_Layernorm mlp": 8.03515625
+        },
+        {
+            "time_gpu_all": 54.976001381874084,
+            "time_gpu_laynorm": 54.976001381874084,
+            "Layernorm mlp weight_and_optimizer_memory": 0.03515625,
+            "Layernorm mlp activation_memory": 8.0,
+            "report_theoretical_memory_Layernorm mlp": 8.03515625
+        },
+        {
+            "time_gpu_all": 57.21599981188774,
+            "time_gpu_laynorm": 57.21599981188774,
+            "Layernorm mlp weight_and_optimizer_memory": 0.03515625,
+            "Layernorm mlp activation_memory": 8.0,
+            "report_theoretical_memory_Layernorm mlp": 8.03515625
+        },
+        {
+            "time_gpu_all": 57.023998349905014,
+            "time_gpu_laynorm": 57.023998349905014,
+            "Layernorm mlp weight_and_optimizer_memory": 0.03515625,
+            "Layernorm mlp activation_memory": 8.0,
+            "report_theoretical_memory_Layernorm mlp": 8.03515625
+        },
+        {
+            "time_gpu_all": 56.0000017285347,
+            "time_gpu_laynorm": 56.0000017285347,
+            "Layernorm mlp weight_and_optimizer_memory": 0.03515625,
+            "Layernorm mlp activation_memory": 8.0,
+            "report_theoretical_memory_Layernorm mlp": 8.03515625
+        },
+        {
+            "time_gpu_all": 53.98400127887726,
+            "time_gpu_laynorm": 53.98400127887726,
+            "Layernorm mlp weight_and_optimizer_memory": 0.03515625,
+            "Layernorm mlp activation_memory": 8.0,
+            "report_theoretical_memory_Layernorm mlp": 8.03515625
+        },
+        {
+            "time_gpu_all": 56.51199817657471,
+            "time_gpu_laynorm": 56.51199817657471,
+            "Layernorm mlp weight_and_optimizer_memory": 0.03515625,
+            "Layernorm mlp activation_memory": 8.0,
+            "report_theoretical_memory_Layernorm mlp": 8.03515625
+        },
+        {
+            "time_gpu_all": 57.21599981188774,
+            "time_gpu_laynorm": 57.21599981188774,
+            "Layernorm mlp weight_and_optimizer_memory": 0.03515625,
+            "Layernorm mlp activation_memory": 8.0,
+            "report_theoretical_memory_Layernorm mlp": 8.03515625
+        },
+        {
+            "time_gpu_all": 56.73599988222122,
+            "time_gpu_laynorm": 56.73599988222122,
+            "Layernorm mlp weight_and_optimizer_memory": 0.03515625,
+            "Layernorm mlp activation_memory": 8.0,
+            "report_theoretical_memory_Layernorm mlp": 8.03515625
+        },
+        {
+            "time_gpu_all": 64.70400094985962,
+            "time_gpu_laynorm": 64.70400094985962,
+            "Layernorm mlp weight_and_optimizer_memory": 0.03515625,
+            "Layernorm mlp activation_memory": 8.0,
+            "report_theoretical_memory_Layernorm mlp": 8.03515625
+        },
+        {
+            "time_gpu_all": 54.62399870157242,
+            "time_gpu_laynorm": 54.62399870157242,
+            "Layernorm mlp weight_and_optimizer_memory": 0.03515625,
+            "Layernorm mlp activation_memory": 8.0,
+            "report_theoretical_memory_Layernorm mlp": 8.03515625
+        },
+        {
+            "time_gpu_all": 53.98400127887726,
+            "time_gpu_laynorm": 53.98400127887726,
+            "Layernorm mlp weight_and_optimizer_memory": 0.03515625,
+            "Layernorm mlp activation_memory": 8.0,
+            "report_theoretical_memory_Layernorm mlp": 8.03515625
+        },
+        {
+            "time_gpu_all": 58.62399935722351,
+            "time_gpu_laynorm": 58.62399935722351,
+            "Layernorm mlp weight_and_optimizer_memory": 0.03515625,
+            "Layernorm mlp activation_memory": 8.0,
+            "report_theoretical_memory_Layernorm mlp": 8.03515625
+        },
+        {
+            "time_gpu_all": 54.976001381874084,
+            "time_gpu_laynorm": 54.976001381874084,
+            "Layernorm mlp weight_and_optimizer_memory": 0.03515625,
+            "Layernorm mlp activation_memory": 8.0,
+            "report_theoretical_memory_Layernorm mlp": 8.03515625
+        },
+        {
+            "time_gpu_all": 66.75200164318085,
+            "time_gpu_laynorm": 66.75200164318085,
+            "Layernorm mlp weight_and_optimizer_memory": 0.03515625,
+            "Layernorm mlp activation_memory": 8.0,
+            "report_theoretical_memory_Layernorm mlp": 8.03515625
+        },
+        {
+            "time_gpu_all": 55.424001067876816,
+            "time_gpu_laynorm": 55.424001067876816,
+            "Layernorm mlp weight_and_optimizer_memory": 0.03515625,
+            "Layernorm mlp activation_memory": 8.0,
+            "report_theoretical_memory_Layernorm mlp": 8.03515625
+        }
+    ],
+    "mlp": [
+        {
+            "time_gpu_all": 619.9359744787216,
+            "time_gpu_mlp_linear_1": 282.9119861125946,
+            "time_gpu_mlp_gelu": 127.58399546146393,
+            "time_gpu_mlp_linear_2": 209.4399929046631,
+            "mlp weight_and_optimizer_memory": 5222.84765625,
+            "mlp activation_memory": 342.0,
+            "report_theoretical_memory_mlp": 5564.84765625
+        },
+        {
+            "time_gpu_all": 586.8479907512665,
+            "time_gpu_mlp_linear_1": 282.55999088287354,
+            "time_gpu_mlp_gelu": 103.4879982471466,
+            "time_gpu_mlp_linear_2": 200.80000162124634,
+            "mlp weight_and_optimizer_memory": 5222.84765625,
+            "mlp activation_memory": 342.0,
+            "report_theoretical_memory_mlp": 5564.84765625
+        },
+        {
+            "time_gpu_all": 543.8399910926819,
+            "time_gpu_mlp_linear_1": 269.4399952888489,
+            "time_gpu_mlp_gelu": 91.77599847316742,
+            "time_gpu_mlp_linear_2": 182.6239973306656,
+            "mlp weight_and_optimizer_memory": 5222.84765625,
+            "mlp activation_memory": 342.0,
+            "report_theoretical_memory_mlp": 5564.84765625
+        },
+        {
+            "time_gpu_all": 539.1680151224136,
+            "time_gpu_mlp_linear_1": 256.8640112876892,
+            "time_gpu_mlp_gelu": 89.59999680519104,
+            "time_gpu_mlp_linear_2": 192.7040070295334,
+            "mlp weight_and_optimizer_memory": 5222.84765625,
+            "mlp activation_memory": 342.0,
+            "report_theoretical_memory_mlp": 5564.84765625
+        },
+        {
+            "time_gpu_all": 533.7919890880585,
+            "time_gpu_mlp_linear_1": 256.79999589920044,
+            "time_gpu_mlp_gelu": 92.51199662685394,
+            "time_gpu_mlp_linear_2": 184.4799965620041,
+            "mlp weight_and_optimizer_memory": 5222.84765625,
+            "mlp activation_memory": 342.0,
+            "report_theoretical_memory_mlp": 5564.84765625
+        },
+        {
+            "time_gpu_all": 527.4560004472733,
+            "time_gpu_mlp_linear_1": 259.0399980545044,
+            "time_gpu_mlp_gelu": 88.06400001049042,
+            "time_gpu_mlp_linear_2": 180.35200238227844,
+            "mlp weight_and_optimizer_memory": 5222.84765625,
+            "mlp activation_memory": 342.0,
+            "report_theoretical_memory_mlp": 5564.84765625
+        },
+        {
+            "time_gpu_all": 527.551993727684,
+            "time_gpu_mlp_linear_1": 259.39199328422546,
+            "time_gpu_mlp_gelu": 88.99199962615967,
+            "time_gpu_mlp_linear_2": 179.1680008172989,
+            "mlp weight_and_optimizer_memory": 5222.84765625,
+            "mlp activation_memory": 342.0,
+            "report_theoretical_memory_mlp": 5564.84765625
+        },
+        {
+            "time_gpu_all": 529.2799919843674,
+            "time_gpu_mlp_linear_1": 259.16799902915955,
+            "time_gpu_mlp_gelu": 88.99199962615967,
+            "time_gpu_mlp_linear_2": 181.11999332904816,
+            "mlp weight_and_optimizer_memory": 5222.84765625,
+            "mlp activation_memory": 342.0,
+            "report_theoretical_memory_mlp": 5564.84765625
+        },
+        {
+            "time_gpu_all": 531.9360122084618,
+            "time_gpu_mlp_linear_1": 256.73601031303406,
+            "time_gpu_mlp_gelu": 91.39200299978256,
+            "time_gpu_mlp_linear_2": 183.80799889564514,
+            "mlp weight_and_optimizer_memory": 5222.84765625,
+            "mlp activation_memory": 342.0,
+            "report_theoretical_memory_mlp": 5564.84765625
+        },
+        {
+            "time_gpu_all": 527.7760103344917,
+            "time_gpu_mlp_linear_1": 257.34400749206543,
+            "time_gpu_mlp_gelu": 87.42400258779526,
+            "time_gpu_mlp_linear_2": 183.00800025463104,
+            "mlp weight_and_optimizer_memory": 5222.84765625,
+            "mlp activation_memory": 342.0,
+            "report_theoretical_memory_mlp": 5564.84765625
+        },
+        {
+            "time_gpu_all": 527.5519862771034,
+            "time_gpu_mlp_linear_1": 258.14399123191833,
+            "time_gpu_mlp_gelu": 89.28000181913376,
+            "time_gpu_mlp_linear_2": 180.12799322605133,
+            "mlp weight_and_optimizer_memory": 5222.84765625,
+            "mlp activation_memory": 342.0,
+            "report_theoretical_memory_mlp": 5564.84765625
+        },
+        {
+            "time_gpu_all": 528.0640050768852,
+            "time_gpu_mlp_linear_1": 260.44800877571106,
+            "time_gpu_mlp_gelu": 88.54400366544724,
+            "time_gpu_mlp_linear_2": 179.07199263572693,
+            "mlp weight_and_optimizer_memory": 5222.84765625,
+            "mlp activation_memory": 342.0,
+            "report_theoretical_memory_mlp": 5564.84765625
+        },
+        {
+            "time_gpu_all": 528.7359952926636,
+            "time_gpu_mlp_linear_1": 257.79199600219727,
+            "time_gpu_mlp_gelu": 90.4960036277771,
+            "time_gpu_mlp_linear_2": 180.4479956626892,
+            "mlp weight_and_optimizer_memory": 5222.84765625,
+            "mlp activation_memory": 342.0,
+            "report_theoretical_memory_mlp": 5564.84765625
+        },
+        {
+            "time_gpu_all": 530.367985367775,
+            "time_gpu_mlp_linear_1": 258.0159902572632,
+            "time_gpu_mlp_gelu": 89.31200206279755,
+            "time_gpu_mlp_linear_2": 183.03999304771423,
+            "mlp weight_and_optimizer_memory": 5222.84765625,
+            "mlp activation_memory": 342.0,
+            "report_theoretical_memory_mlp": 5564.84765625
+        },
+        {
+            "time_gpu_all": 530.9120118618011,
+            "time_gpu_mlp_linear_1": 257.9840123653412,
+            "time_gpu_mlp_gelu": 90.65599739551544,
+            "time_gpu_mlp_linear_2": 182.27200210094452,
+            "mlp weight_and_optimizer_memory": 5222.84765625,
+            "mlp activation_memory": 342.0,
+            "report_theoretical_memory_mlp": 5564.84765625
+        },
+        {
+            "time_gpu_all": 528.3840000629425,
+            "time_gpu_mlp_linear_1": 258.2080066204071,
+            "time_gpu_mlp_gelu": 89.66399729251862,
+            "time_gpu_mlp_linear_2": 180.51199615001678,
+            "mlp weight_and_optimizer_memory": 5222.84765625,
+            "mlp activation_memory": 342.0,
+            "report_theoretical_memory_mlp": 5564.84765625
+        },
+        {
+            "time_gpu_all": 538.6240109801292,
+            "time_gpu_mlp_linear_1": 268.640011548996,
+            "time_gpu_mlp_gelu": 89.40800279378891,
+            "time_gpu_mlp_linear_2": 180.57599663734436,
+            "mlp weight_and_optimizer_memory": 5222.84765625,
+            "mlp activation_memory": 342.0,
+            "report_theoretical_memory_mlp": 5564.84765625
+        },
+        {
+            "time_gpu_all": 535.8079895377159,
+            "time_gpu_mlp_linear_1": 261.4719867706299,
+            "time_gpu_mlp_gelu": 92.19200164079666,
+            "time_gpu_mlp_linear_2": 182.14400112628937,
+            "mlp weight_and_optimizer_memory": 5222.84765625,
+            "mlp activation_memory": 342.0,
+            "report_theoretical_memory_mlp": 5564.84765625
+        },
+        {
+            "time_gpu_all": 531.7440181970596,
+            "time_gpu_mlp_linear_1": 257.9840123653412,
+            "time_gpu_mlp_gelu": 90.4960036277771,
+            "time_gpu_mlp_linear_2": 183.26400220394135,
+            "mlp weight_and_optimizer_memory": 5222.84765625,
+            "mlp activation_memory": 342.0,
+            "report_theoretical_memory_mlp": 5564.84765625
+        },
+        {
+            "time_gpu_all": 527.6160091161728,
+            "time_gpu_mlp_linear_1": 257.56800174713135,
+            "time_gpu_mlp_gelu": 88.3840024471283,
+            "time_gpu_mlp_linear_2": 181.66400492191315,
+            "mlp weight_and_optimizer_memory": 5222.84765625,
+            "mlp activation_memory": 342.0,
+            "report_theoretical_memory_mlp": 5564.84765625
+        },
+        {
+            "time_gpu_all": 525.3439918160439,
+            "time_gpu_mlp_linear_1": 258.4959864616394,
+            "time_gpu_mlp_gelu": 88.54400366544724,
+            "time_gpu_mlp_linear_2": 178.30400168895721,
+            "mlp weight_and_optimizer_memory": 5222.84765625,
+            "mlp activation_memory": 342.0,
+            "report_theoretical_memory_mlp": 5564.84765625
+        },
+        {
+            "time_gpu_all": 526.0159894824028,
+            "time_gpu_mlp_linear_1": 259.0399980545044,
+            "time_gpu_mlp_gelu": 87.64799684286118,
+            "time_gpu_mlp_linear_2": 179.32799458503723,
+            "mlp weight_and_optimizer_memory": 5222.84765625,
+            "mlp activation_memory": 342.0,
+            "report_theoretical_memory_mlp": 5564.84765625
+        },
+        {
+            "time_gpu_all": 530.9440121054649,
+            "time_gpu_mlp_linear_1": 262.04800605773926,
+            "time_gpu_mlp_gelu": 89.08800035715103,
+            "time_gpu_mlp_linear_2": 179.80800569057465,
+            "mlp weight_and_optimizer_memory": 5222.84765625,
+            "mlp activation_memory": 342.0,
+            "report_theoretical_memory_mlp": 5564.84765625
+        },
+        {
+            "time_gpu_all": 543.4560030698776,
+            "time_gpu_mlp_linear_1": 267.2320008277893,
+            "time_gpu_mlp_gelu": 92.16000139713287,
+            "time_gpu_mlp_linear_2": 184.06400084495544,
+            "mlp weight_and_optimizer_memory": 5222.84765625,
+            "mlp activation_memory": 342.0,
+            "report_theoretical_memory_mlp": 5564.84765625
+        },
+        {
+            "time_gpu_all": 536.3840013742447,
+            "time_gpu_mlp_linear_1": 260.25599241256714,
+            "time_gpu_mlp_gelu": 91.36000275611877,
+            "time_gpu_mlp_linear_2": 184.76800620555878,
+            "mlp weight_and_optimizer_memory": 5222.84765625,
+            "mlp activation_memory": 342.0,
+            "report_theoretical_memory_mlp": 5564.84765625
+        },
+        {
+            "time_gpu_all": 526.4639928936958,
+            "time_gpu_mlp_linear_1": 256.51198625564575,
+            "time_gpu_mlp_gelu": 88.35200220346451,
+            "time_gpu_mlp_linear_2": 181.60000443458557,
+            "mlp weight_and_optimizer_memory": 5222.84765625,
+            "mlp activation_memory": 342.0,
+            "report_theoretical_memory_mlp": 5564.84765625
+        },
+        {
+            "time_gpu_all": 532.0960059762001,
+            "time_gpu_mlp_linear_1": 263.39200139045715,
+            "time_gpu_mlp_gelu": 89.21600133180618,
+            "time_gpu_mlp_linear_2": 179.48800325393677,
+            "mlp weight_and_optimizer_memory": 5222.84765625,
+            "mlp activation_memory": 342.0,
+            "report_theoretical_memory_mlp": 5564.84765625
+        },
+        {
+            "time_gpu_all": 525.9199887514114,
+            "time_gpu_mlp_linear_1": 259.64799523353577,
+            "time_gpu_mlp_gelu": 88.128000497818,
+            "time_gpu_mlp_linear_2": 178.14399302005768,
+            "mlp weight_and_optimizer_memory": 5222.84765625,
+            "mlp activation_memory": 342.0,
+            "report_theoretical_memory_mlp": 5564.84765625
+        },
+        {
+            "time_gpu_all": 528.4480154514313,
+            "time_gpu_mlp_linear_1": 257.9840123653412,
+            "time_gpu_mlp_gelu": 90.04800021648407,
+            "time_gpu_mlp_linear_2": 180.41600286960602,
+            "mlp weight_and_optimizer_memory": 5222.84765625,
+            "mlp activation_memory": 342.0,
+            "report_theoretical_memory_mlp": 5564.84765625
+        },
+        {
+            "time_gpu_all": 527.7120098471642,
+            "time_gpu_mlp_linear_1": 256.8320035934448,
+            "time_gpu_mlp_gelu": 88.0960002541542,
+            "time_gpu_mlp_linear_2": 182.78400599956512,
+            "mlp weight_and_optimizer_memory": 5222.84765625,
+            "mlp activation_memory": 342.0,
+            "report_theoretical_memory_mlp": 5564.84765625
+        },
+        {
+            "time_gpu_all": 527.2960066795349,
+            "time_gpu_mlp_linear_1": 257.4720084667206,
+            "time_gpu_mlp_gelu": 87.45600283145905,
+            "time_gpu_mlp_linear_2": 182.36799538135529,
+            "mlp weight_and_optimizer_memory": 5222.84765625,
+            "mlp activation_memory": 342.0,
+            "report_theoretical_memory_mlp": 5564.84765625
+        },
+        {
+            "time_gpu_all": 525.600016117096,
+            "time_gpu_mlp_linear_1": 258.4640085697174,
+            "time_gpu_mlp_gelu": 87.39200234413147,
+            "time_gpu_mlp_linear_2": 179.74400520324707,
+            "mlp weight_and_optimizer_memory": 5222.84765625,
+            "mlp activation_memory": 342.0,
+            "report_theoretical_memory_mlp": 5564.84765625
+        },
+        {
+            "time_gpu_all": 527.9679894447327,
+            "time_gpu_mlp_linear_1": 259.39199328422546,
+            "time_gpu_mlp_gelu": 89.4400030374527,
+            "time_gpu_mlp_linear_2": 179.1359931230545,
+            "mlp weight_and_optimizer_memory": 5222.84765625,
+            "mlp activation_memory": 342.0,
+            "report_theoretical_memory_mlp": 5564.84765625
+        },
+        {
+            "time_gpu_all": 536.0960140824318,
+            "time_gpu_mlp_linear_1": 259.8400115966797,
+            "time_gpu_mlp_gelu": 91.5519967675209,
+            "time_gpu_mlp_linear_2": 184.7040057182312,
+            "mlp weight_and_optimizer_memory": 5222.84765625,
+            "mlp activation_memory": 342.0,
+            "report_theoretical_memory_mlp": 5564.84765625
+        },
+        {
+            "time_gpu_all": 527.1680057048798,
+            "time_gpu_mlp_linear_1": 256.44800066947937,
+            "time_gpu_mlp_gelu": 88.25600147247314,
+            "time_gpu_mlp_linear_2": 182.46400356292725,
+            "mlp weight_and_optimizer_memory": 5222.84765625,
+            "mlp activation_memory": 342.0,
+            "report_theoretical_memory_mlp": 5564.84765625
+        },
+        {
+            "time_gpu_all": 525.4399850964546,
+            "time_gpu_mlp_linear_1": 256.76798820495605,
+            "time_gpu_mlp_gelu": 87.48800307512283,
+            "time_gpu_mlp_linear_2": 181.18399381637573,
+            "mlp weight_and_optimizer_memory": 5222.84765625,
+            "mlp activation_memory": 342.0,
+            "report_theoretical_memory_mlp": 5564.84765625
+        },
+        {
+            "time_gpu_all": 527.1040201187134,
+            "time_gpu_mlp_linear_1": 258.976012468338,
+            "time_gpu_mlp_gelu": 89.12000060081482,
+            "time_gpu_mlp_linear_2": 179.00800704956055,
+            "mlp weight_and_optimizer_memory": 5222.84765625,
+            "mlp activation_memory": 342.0,
+            "report_theoretical_memory_mlp": 5564.84765625
+        },
+        {
+            "time_gpu_all": 526.8480107188225,
+            "time_gpu_mlp_linear_1": 259.20000672340393,
+            "time_gpu_mlp_gelu": 88.28800171613693,
+            "time_gpu_mlp_linear_2": 179.36000227928162,
+            "mlp weight_and_optimizer_memory": 5222.84765625,
+            "mlp activation_memory": 342.0,
+            "report_theoretical_memory_mlp": 5564.84765625
+        },
+        {
+            "time_gpu_all": 532.3520004749298,
+            "time_gpu_mlp_linear_1": 258.5600018501282,
+            "time_gpu_mlp_gelu": 89.79199826717377,
+            "time_gpu_mlp_linear_2": 184.00000035762787,
+            "mlp weight_and_optimizer_memory": 5222.84765625,
+            "mlp activation_memory": 342.0,
+            "report_theoretical_memory_mlp": 5564.84765625
+        },
+        {
+            "time_gpu_all": 556.0960099101067,
+            "time_gpu_mlp_linear_1": 267.0080065727234,
+            "time_gpu_mlp_gelu": 104.76800054311752,
+            "time_gpu_mlp_linear_2": 184.32000279426575,
+            "mlp weight_and_optimizer_memory": 5222.84765625,
+            "mlp activation_memory": 342.0,
+            "report_theoretical_memory_mlp": 5564.84765625
+        }
+    ],
+    "laynorm post": [
+        {
+            "time_gpu_all": 56.2559999525547,
+            "time_gpu_layernorm_post": 56.2559999525547,
+            "layernorm_post weight_and_optimizer_memory": 5222.84765625,
+            "layernorm_post activation_memory": 8.0,
+            "report_theoretical_memory_layernorm_post": 8.03515625
+        }
+    ],
+    "logit_time": [
+        {
+            "time_gpu_logit_time": 873.3440041542053
+        }
+    ],
+    "param_time": [
+        {
+            "time_gpu_param_time": 1494.2400455474854
+        }
+    ]
+}

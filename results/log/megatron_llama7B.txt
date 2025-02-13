@@ -1,0 +1,365 @@
++ : 1
++ : 0
++ : localhost
++ : 29500
++ NUM_GPUS=2
++ model_size=13
++ num_layers=40
++ num_attention_heads=40
++ hidden_size=5120
++ seq_length=2048
++ micro_batch=1
++ epoch_num=1
++ tensor_model_parallel_size=8
++ pipeline_model_parallel=1
++ vocab_size=50257
++ model_name=gpt_13b
++ ga_num=2
++ sp_enable=
++ frame=Megatron
++ aiob_enable=
++ max_position_embeddings=4096
++ num_experts=1
++ moe_enable=
++ enable_visual=
++ workload_only=
++ [ 31 -gt 0 ]
++ echo Processing argument: --nnodes
+Processing argument: --nnodes
++ WORLD_SIZE=1
++ shift
++ shift
++ [ 29 -gt 0 ]
++ echo Processing argument: --node_rank
+Processing argument: --node_rank
++ RANK=0
++ shift
++ shift
++ [ 27 -gt 0 ]
++ echo Processing argument: --nproc_per_node
+Processing argument: --nproc_per_node
++ NUM_GPUS=2
++ shift
++ shift
++ [ 25 -gt 0 ]
++ echo Processing argument: --master_addr
+Processing argument: --master_addr
++ MASTER_ADDR=localhost
++ shift
++ shift
++ [ 23 -gt 0 ]
++ echo Processing argument: --master_port
+Processing argument: --master_port
++ MASTER_PORT=29500
++ shift
++ shift
++ [ 21 -gt 0 ]
++ echo Processing argument: -m
+Processing argument: -m
++ model_size=7
++ shift
++ shift
++ [ 19 -gt 0 ]
++ echo Processing argument: --world_size
+Processing argument: --world_size
++ world_size=2
++ shift
++ shift
++ [ 17 -gt 0 ]
++ echo Processing argument: --tensor_model_parallel_size
+Processing argument: --tensor_model_parallel_size
++ tensor_model_parallel_size=2
++ shift
++ shift
++ [ 15 -gt 0 ]
++ echo Processing argument: --pipeline_model_parallel
+Processing argument: --pipeline_model_parallel
++ pipeline_model_parallel=1
++ shift
++ shift
++ [ 13 -gt 0 ]
++ echo Processing argument: --frame
+Processing argument: --frame
++ frame=Megatron
++ shift
++ shift
++ [ 11 -gt 0 ]
++ echo Processing argument: --global_batch
+Processing argument: --global_batch
++ global_batch=16
++ shift
++ shift
++ [ 9 -gt 0 ]
++ echo Processing argument: --micro_batch
+Processing argument: --micro_batch
++ micro_batch=1
++ shift
++ shift
++ [ 7 -gt 0 ]
++ echo Processing argument: --seq_length
+Processing argument: --seq_length
++ seq_length=2048
++ shift
++ shift
++ [ 5 -gt 0 ]
++ echo Processing argument: --swiglu
+Processing argument: --swiglu
++ swiglu=--swiglu
++ shift
++ [ 4 -gt 0 ]
++ echo Processing argument: --use_flash_attn
+Processing argument: --use_flash_attn
++ use_flash_attn=--use_flash_attn
++ shift
++ [ 3 -gt 0 ]
++ echo Processing argument: --aiob_enable
+Processing argument: --aiob_enable
++ aiob_enable=--aiob_enable
++ shift
++ [ 2 -gt 0 ]
++ echo Processing argument: --enable_visual
+Processing argument: --enable_visual
++ enable_visual=--enable_visual
++ shift
++ [ 1 -gt 0 ]
++ echo Processing argument: true
+Processing argument: true
++ break
++ model_name=gpt_7B
++ num_layers=36
++ hidden_size=4096
++ num_attention_heads=32
++ dp_num=1
++ global_batch=2
++ [ ]
++ script=/cpfs04/user/chengqinxiu/SimAI/aicb/aicb.py
++ cmd=/cpfs04/user/chengqinxiu/SimAI/aicb/aicb.py   --frame=Megatron   --model_name=gpt_7B   --world_size=2   --tensor_model_parallel_size=2   --micro_batch=1   --global_batch=2   --epoch_num=1   --num_layers=36   --hidden_size=4096   --num_attention_heads=32   --seq_length=2048   --vocab_size=50257   --pipeline_model_parallel=1   --use-distributed-optimizer   --max_position_embeddings=4096   --aiob_enable   --enable_visual         --use_flash_attn   --swiglu               --num_experts=1      
++ echo /cpfs04/user/chengqinxiu/SimAI/aicb/aicb.py --frame=Megatron --model_name=gpt_7B --world_size=2 --tensor_model_parallel_size=2 --micro_batch=1 --global_batch=2 --epoch_num=1 --num_layers=36 --hidden_size=4096 --num_attention_heads=32 --seq_length=2048 --vocab_size=50257 --pipeline_model_parallel=1 --use-distributed-optimizer --max_position_embeddings=4096 --aiob_enable --enable_visual --use_flash_attn --swiglu --num_experts=1
+/cpfs04/user/chengqinxiu/SimAI/aicb/aicb.py --frame=Megatron --model_name=gpt_7B --world_size=2 --tensor_model_parallel_size=2 --micro_batch=1 --global_batch=2 --epoch_num=1 --num_layers=36 --hidden_size=4096 --num_attention_heads=32 --seq_length=2048 --vocab_size=50257 --pipeline_model_parallel=1 --use-distributed-optimizer --max_position_embeddings=4096 --aiob_enable --enable_visual --use_flash_attn --swiglu --num_experts=1
++ [ ]
++ python -m torch.distributed.run --nnodes 1 --node_rank 0 --nproc_per_node 2 --master_addr localhost --master_port 29500 /cpfs04/user/chengqinxiu/SimAI/aicb/aicb.py --frame=Megatron --model_name=gpt_7B --world_size=2 --tensor_model_parallel_size=2 --micro_batch=1 --global_batch=2 --epoch_num=1 --num_layers=36 --hidden_size=4096 --num_attention_heads=32 --seq_length=2048 --vocab_size=50257 --pipeline_model_parallel=1 --use-distributed-optimizer --max_position_embeddings=4096 --aiob_enable --enable_visual --use_flash_attn --swiglu --num_experts=1
+WARNING:__main__:
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+/cpfs04/user/chengqinxiu/SimAI/aicb/workload_generator/mocked_model/AiobMegatron.py:164: FutureWarning: `torch.cuda.amp.custom_fwd(args...)` is deprecated. Please use `torch.amp.custom_fwd(args..., device_type='cuda')` instead.
+  def forward(
+Compute-results save in:./results/aiob_outputs/gpt_7B-world_size2-tp2-pp1-ep1-gbs2-mbs1-seq2048-flash_attn-True.txt
+Workload file generated:results/mocked_workload/megatron_gpt_7B_sp_False_iteration_1_computationEnable_True_2n_workload.csv
+[2025-02-04 23:56:17,675] [INFO] [RANK 0] comm op: all_reduce | comm group: dp_group | time (ms): 50.83 | msg size: 8.0 B | algbw (GB): 0.00  | busbw (GB): 0.00 
+[2025-02-04 23:56:17,676] [INFO] [RANK 0] comm op: all_reduce | comm group: dp_group | time (ms): 0.18 | msg size: 8.0 B | algbw (GB): 0.00  | busbw (GB): 0.00 
+[2025-02-04 23:56:17,676] [INFO] [RANK 0] comm op: all_reduce | comm group: dp_group | time (ms): 0.09 | msg size: 8.0 B | algbw (GB): 0.00  | busbw (GB): 0.00 
+[2025-02-04 23:56:17,676] [INFO] [RANK 0] comm op: all_reduce | comm group: dp_group | time (ms): 0.09 | msg size: 8.0 B | algbw (GB): 0.00  | busbw (GB): 0.00 
+[2025-02-04 23:56:17,676] [INFO] [RANK 0] comm op: all_gather | comm group: dp_group | time (ms): 0.10 | msg size: 32.0 B | algbw (GB): 0.00  | busbw (GB): 0.00 
+[2025-02-04 23:56:17,705] [INFO] [RANK 0] comm op: broadcast | comm group: tp_group | time (ms): 28.75 | msg size: 24.0 B | algbw (GB): 0.00  | busbw (GB): 0.00 
+[2025-02-04 23:56:17,706] [INFO] [RANK 0] comm op: all_gather | comm group: dp_group | time (ms): 0.19 | msg size: 64.0 B | algbw (GB): 0.00  | busbw (GB): 0.00 
+[2025-02-04 23:56:17,706] [INFO] [RANK 0] --------epoch 0 | micro_step time 2590.37 ---------
+
+[2025-02-04 23:56:17,706] [INFO] [RANK 0] comm op: broadcast | comm group: tp_group | time (ms): 0.13 | msg size: 40.0 B | algbw (GB): 0.00  | busbw (GB): 0.00 
+[2025-02-04 23:56:17,706] [INFO] [RANK 0] comm op: broadcast | comm group: tp_group | time (ms): 0.09 | msg size: 16.02 KB | algbw (GB): 0.16  | busbw (GB): 0.16 
+[2025-02-04 23:56:17,707] [INFO] [RANK 0] comm op: all_reduce | comm group: tp_group | time (ms): 1.06 | msg size: 16.0 MB | algbw (GB): 14.80  | busbw (GB): 14.80 
+[2025-02-04 23:56:17,709] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.26 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,710] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.41 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,712] [INFO] [RANK 0] comm op: all_reduce | comm group: tp_group | time (ms): 1.12 | msg size: 16.0 MB | algbw (GB): 13.96  | busbw (GB): 13.96 
+[2025-02-04 23:56:17,714] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.84 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,716] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.82 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,717] [INFO] [RANK 0] comm op: all_reduce | comm group: tp_group | time (ms): 1.07 | msg size: 16.0 MB | algbw (GB): 14.64  | busbw (GB): 14.64 
+[2025-02-04 23:56:17,718] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.29 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,720] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.28 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,721] [INFO] [RANK 0] comm op: all_reduce | comm group: tp_group | time (ms): 1.04 | msg size: 16.0 MB | algbw (GB): 15.02  | busbw (GB): 15.02 
+[2025-02-04 23:56:17,723] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.82 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,725] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.82 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,726] [INFO] [RANK 0] comm op: all_reduce | comm group: tp_group | time (ms): 1.04 | msg size: 16.0 MB | algbw (GB): 15.00  | busbw (GB): 15.00 
+[2025-02-04 23:56:17,727] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.29 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,728] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.29 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,730] [INFO] [RANK 0] comm op: all_reduce | comm group: tp_group | time (ms): 1.04 | msg size: 16.0 MB | algbw (GB): 15.08  | busbw (GB): 15.08 
+[2025-02-04 23:56:17,731] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.82 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,733] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.80 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,734] [INFO] [RANK 0] comm op: all_reduce | comm group: tp_group | time (ms): 1.04 | msg size: 16.0 MB | algbw (GB): 15.10  | busbw (GB): 15.10 
+[2025-02-04 23:56:17,736] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.28 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,737] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.30 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,738] [INFO] [RANK 0] comm op: all_reduce | comm group: tp_group | time (ms): 1.04 | msg size: 16.0 MB | algbw (GB): 14.99  | busbw (GB): 14.99 
+[2025-02-04 23:56:17,740] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.82 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,742] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.81 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,743] [INFO] [RANK 0] comm op: all_reduce | comm group: tp_group | time (ms): 1.04 | msg size: 16.0 MB | algbw (GB): 15.07  | busbw (GB): 15.07 
+[2025-02-04 23:56:17,745] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.29 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,746] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.29 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,747] [INFO] [RANK 0] comm op: all_reduce | comm group: tp_group | time (ms): 1.03 | msg size: 16.0 MB | algbw (GB): 15.23  | busbw (GB): 15.23 
+[2025-02-04 23:56:17,749] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.81 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,751] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.81 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,752] [INFO] [RANK 0] comm op: all_reduce | comm group: tp_group | time (ms): 1.03 | msg size: 16.0 MB | algbw (GB): 15.21  | busbw (GB): 15.21 
+[2025-02-04 23:56:17,754] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.29 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,755] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.29 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,756] [INFO] [RANK 0] comm op: all_reduce | comm group: tp_group | time (ms): 1.04 | msg size: 16.0 MB | algbw (GB): 15.05  | busbw (GB): 15.05 
+[2025-02-04 23:56:17,758] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.82 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,760] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.82 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,761] [INFO] [RANK 0] comm op: all_reduce | comm group: tp_group | time (ms): 1.03 | msg size: 16.0 MB | algbw (GB): 15.10  | busbw (GB): 15.10 
+[2025-02-04 23:56:17,762] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.29 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,764] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.28 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,765] [INFO] [RANK 0] comm op: all_reduce | comm group: tp_group | time (ms): 1.03 | msg size: 16.0 MB | algbw (GB): 15.17  | busbw (GB): 15.17 
+[2025-02-04 23:56:17,767] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.82 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,769] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.82 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,770] [INFO] [RANK 0] comm op: all_reduce | comm group: tp_group | time (ms): 1.04 | msg size: 16.0 MB | algbw (GB): 15.07  | busbw (GB): 15.07 
+[2025-02-04 23:56:17,771] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.29 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,773] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.29 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,774] [INFO] [RANK 0] comm op: all_reduce | comm group: tp_group | time (ms): 1.03 | msg size: 16.0 MB | algbw (GB): 15.19  | busbw (GB): 15.19 
+[2025-02-04 23:56:17,776] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.81 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,777] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.82 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,779] [INFO] [RANK 0] comm op: all_reduce | comm group: tp_group | time (ms): 1.03 | msg size: 16.0 MB | algbw (GB): 15.10  | busbw (GB): 15.10 
+[2025-02-04 23:56:17,780] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.28 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,781] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.28 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,782] [INFO] [RANK 0] comm op: all_reduce | comm group: tp_group | time (ms): 1.04 | msg size: 16.0 MB | algbw (GB): 14.97  | busbw (GB): 14.97 
+[2025-02-04 23:56:17,784] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.82 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,786] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.82 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,787] [INFO] [RANK 0] comm op: all_reduce | comm group: tp_group | time (ms): 1.03 | msg size: 16.0 MB | algbw (GB): 15.22  | busbw (GB): 15.22 
+[2025-02-04 23:56:17,789] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.29 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,790] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.29 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,791] [INFO] [RANK 0] comm op: all_reduce | comm group: tp_group | time (ms): 1.03 | msg size: 16.0 MB | algbw (GB): 15.12  | busbw (GB): 15.12 
+[2025-02-04 23:56:17,793] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.81 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,795] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.81 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,796] [INFO] [RANK 0] comm op: all_reduce | comm group: tp_group | time (ms): 1.03 | msg size: 16.0 MB | algbw (GB): 15.10  | busbw (GB): 15.10 
+[2025-02-04 23:56:17,798] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.29 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,799] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.30 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,800] [INFO] [RANK 0] comm op: all_reduce | comm group: tp_group | time (ms): 1.04 | msg size: 16.0 MB | algbw (GB): 15.08  | busbw (GB): 15.08 
+[2025-02-04 23:56:17,802] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.81 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,804] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.82 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,805] [INFO] [RANK 0] comm op: all_reduce | comm group: tp_group | time (ms): 1.05 | msg size: 16.0 MB | algbw (GB): 14.92  | busbw (GB): 14.92 
+[2025-02-04 23:56:17,807] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.30 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,808] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.30 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,809] [INFO] [RANK 0] comm op: all_reduce | comm group: tp_group | time (ms): 1.04 | msg size: 16.0 MB | algbw (GB): 15.02  | busbw (GB): 15.02 
+[2025-02-04 23:56:17,811] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.82 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,813] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.81 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,814] [INFO] [RANK 0] comm op: all_reduce | comm group: tp_group | time (ms): 1.04 | msg size: 16.0 MB | algbw (GB): 14.96  | busbw (GB): 14.96 
+[2025-02-04 23:56:17,815] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.30 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,817] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.29 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,818] [INFO] [RANK 0] comm op: all_reduce | comm group: tp_group | time (ms): 1.04 | msg size: 16.0 MB | algbw (GB): 14.96  | busbw (GB): 14.96 
+[2025-02-04 23:56:17,820] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.82 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,822] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.81 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,823] [INFO] [RANK 0] comm op: all_reduce | comm group: tp_group | time (ms): 1.04 | msg size: 16.0 MB | algbw (GB): 14.98  | busbw (GB): 14.98 
+[2025-02-04 23:56:17,824] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.29 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,826] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.29 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,827] [INFO] [RANK 0] comm op: all_reduce | comm group: tp_group | time (ms): 1.03 | msg size: 16.0 MB | algbw (GB): 15.16  | busbw (GB): 15.16 
+[2025-02-04 23:56:17,829] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.81 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,831] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.81 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,832] [INFO] [RANK 0] comm op: all_reduce | comm group: tp_group | time (ms): 1.04 | msg size: 16.0 MB | algbw (GB): 14.97  | busbw (GB): 14.97 
+[2025-02-04 23:56:17,833] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.30 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,835] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.29 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,836] [INFO] [RANK 0] comm op: all_reduce | comm group: tp_group | time (ms): 1.04 | msg size: 16.0 MB | algbw (GB): 14.97  | busbw (GB): 14.97 
+[2025-02-04 23:56:17,838] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.82 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,840] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.82 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,841] [INFO] [RANK 0] comm op: all_reduce | comm group: tp_group | time (ms): 1.04 | msg size: 16.0 MB | algbw (GB): 15.08  | busbw (GB): 15.08 
+[2025-02-04 23:56:17,842] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.29 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,843] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.29 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,845] [INFO] [RANK 0] comm op: all_reduce | comm group: tp_group | time (ms): 1.03 | msg size: 16.0 MB | algbw (GB): 15.10  | busbw (GB): 15.10 
+[2025-02-04 23:56:17,847] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.81 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,848] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.84 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,850] [INFO] [RANK 0] comm op: all_reduce | comm group: tp_group | time (ms): 1.03 | msg size: 16.0 MB | algbw (GB): 15.14  | busbw (GB): 15.14 
+[2025-02-04 23:56:17,851] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.29 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,852] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.29 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,854] [INFO] [RANK 0] comm op: all_reduce | comm group: tp_group | time (ms): 1.03 | msg size: 16.0 MB | algbw (GB): 15.10  | busbw (GB): 15.10 
+[2025-02-04 23:56:17,855] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.81 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,857] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.81 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,858] [INFO] [RANK 0] comm op: all_reduce | comm group: tp_group | time (ms): 1.03 | msg size: 16.0 MB | algbw (GB): 15.16  | busbw (GB): 15.16 
+[2025-02-04 23:56:17,860] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.29 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,861] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.29 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,862] [INFO] [RANK 0] comm op: all_reduce | comm group: tp_group | time (ms): 1.03 | msg size: 16.0 MB | algbw (GB): 15.23  | busbw (GB): 15.23 
+[2025-02-04 23:56:17,864] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.81 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,866] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.81 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,867] [INFO] [RANK 0] comm op: all_reduce | comm group: tp_group | time (ms): 1.03 | msg size: 16.0 MB | algbw (GB): 15.21  | busbw (GB): 15.21 
+[2025-02-04 23:56:17,869] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.29 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,870] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.29 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,871] [INFO] [RANK 0] comm op: all_reduce | comm group: tp_group | time (ms): 1.03 | msg size: 16.0 MB | algbw (GB): 15.22  | busbw (GB): 15.22 
+[2025-02-04 23:56:17,873] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.81 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,875] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.82 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,876] [INFO] [RANK 0] comm op: all_reduce | comm group: tp_group | time (ms): 1.03 | msg size: 16.0 MB | algbw (GB): 15.23  | busbw (GB): 15.23 
+[2025-02-04 23:56:17,877] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.32 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,879] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.24 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,880] [INFO] [RANK 0] comm op: all_reduce | comm group: tp_group | time (ms): 1.03 | msg size: 16.0 MB | algbw (GB): 15.12  | busbw (GB): 15.12 
+[2025-02-04 23:56:17,882] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.81 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,884] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.81 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,885] [INFO] [RANK 0] comm op: all_reduce | comm group: tp_group | time (ms): 1.03 | msg size: 16.0 MB | algbw (GB): 15.13  | busbw (GB): 15.13 
+[2025-02-04 23:56:17,886] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.29 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,888] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.29 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,889] [INFO] [RANK 0] comm op: all_reduce | comm group: tp_group | time (ms): 1.04 | msg size: 16.0 MB | algbw (GB): 15.09  | busbw (GB): 15.09 
+[2025-02-04 23:56:17,891] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.82 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,893] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.95 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,894] [INFO] [RANK 0] comm op: all_reduce | comm group: tp_group | time (ms): 1.16 | msg size: 16.0 MB | algbw (GB): 13.45  | busbw (GB): 13.45 
+[2025-02-04 23:56:17,896] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.29 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,897] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.29 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,898] [INFO] [RANK 0] comm op: all_reduce | comm group: tp_group | time (ms): 1.05 | msg size: 16.0 MB | algbw (GB): 14.81  | busbw (GB): 14.81 
+[2025-02-04 23:56:17,900] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.83 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,902] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.83 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,903] [INFO] [RANK 0] comm op: all_reduce | comm group: tp_group | time (ms): 1.06 | msg size: 16.0 MB | algbw (GB): 14.77  | busbw (GB): 14.77 
+[2025-02-04 23:56:17,905] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.29 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,906] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.30 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,907] [INFO] [RANK 0] comm op: all_reduce | comm group: tp_group | time (ms): 1.05 | msg size: 16.0 MB | algbw (GB): 14.92  | busbw (GB): 14.92 
+[2025-02-04 23:56:17,909] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.82 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,911] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.87 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,912] [INFO] [RANK 0] comm op: all_reduce | comm group: tp_group | time (ms): 1.07 | msg size: 16.0 MB | algbw (GB): 14.63  | busbw (GB): 14.63 
+[2025-02-04 23:56:17,914] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.29 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,915] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.31 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,916] [INFO] [RANK 0] comm op: all_reduce | comm group: tp_group | time (ms): 1.08 | msg size: 16.0 MB | algbw (GB): 14.46  | busbw (GB): 14.46 
+[2025-02-04 23:56:17,918] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.89 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,920] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.83 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,922] [INFO] [RANK 0] comm op: all_reduce | comm group: tp_group | time (ms): 1.08 | msg size: 16.0 MB | algbw (GB): 14.49  | busbw (GB): 14.49 
+[2025-02-04 23:56:17,923] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.29 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,924] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.29 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,926] [INFO] [RANK 0] comm op: all_reduce | comm group: tp_group | time (ms): 1.05 | msg size: 16.0 MB | algbw (GB): 14.85  | busbw (GB): 14.85 
+[2025-02-04 23:56:17,927] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.84 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,929] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.82 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,931] [INFO] [RANK 0] comm op: all_reduce | comm group: tp_group | time (ms): 1.05 | msg size: 16.0 MB | algbw (GB): 14.83  | busbw (GB): 14.83 
+[2025-02-04 23:56:17,932] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.33 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,933] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.28 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,935] [INFO] [RANK 0] comm op: all_reduce | comm group: tp_group | time (ms): 1.04 | msg size: 16.0 MB | algbw (GB): 14.98  | busbw (GB): 14.98 
+[2025-02-04 23:56:17,937] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.82 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,938] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.82 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,940] [INFO] [RANK 0] comm op: all_reduce | comm group: tp_group | time (ms): 1.05 | msg size: 16.0 MB | algbw (GB): 14.95  | busbw (GB): 14.95 
+[2025-02-04 23:56:17,941] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.30 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,942] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.28 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,944] [INFO] [RANK 0] comm op: all_reduce | comm group: tp_group | time (ms): 1.05 | msg size: 16.0 MB | algbw (GB): 14.95  | busbw (GB): 14.95 
+[2025-02-04 23:56:17,945] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.82 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,947] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.81 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,949] [INFO] [RANK 0] comm op: all_reduce | comm group: tp_group | time (ms): 1.06 | msg size: 16.0 MB | algbw (GB): 14.79  | busbw (GB): 14.79 
+[2025-02-04 23:56:17,950] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.29 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,951] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.29 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,952] [INFO] [RANK 0] comm op: all_reduce | comm group: tp_group | time (ms): 1.04 | msg size: 16.0 MB | algbw (GB): 14.97  | busbw (GB): 14.97 
+[2025-02-04 23:56:17,954] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.88 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,956] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.83 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,958] [INFO] [RANK 0] comm op: all_reduce | comm group: tp_group | time (ms): 1.06 | msg size: 16.0 MB | algbw (GB): 14.76  | busbw (GB): 14.76 
+[2025-02-04 23:56:17,959] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.34 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,961] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.29 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,962] [INFO] [RANK 0] comm op: all_reduce | comm group: tp_group | time (ms): 1.05 | msg size: 16.0 MB | algbw (GB): 14.81  | busbw (GB): 14.81 
+[2025-02-04 23:56:17,964] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.82 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,966] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.84 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,967] [INFO] [RANK 0] comm op: all_reduce | comm group: tp_group | time (ms): 1.07 | msg size: 16.0 MB | algbw (GB): 14.63  | busbw (GB): 14.63 
+[2025-02-04 23:56:17,968] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.30 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,970] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.29 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,971] [INFO] [RANK 0] comm op: all_reduce | comm group: tp_group | time (ms): 1.05 | msg size: 16.0 MB | algbw (GB): 14.92  | busbw (GB): 14.92 
+[2025-02-04 23:56:17,973] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.81 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,975] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.81 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,976] [INFO] [RANK 0] comm op: all_reduce | comm group: tp_group | time (ms): 1.06 | msg size: 16.0 MB | algbw (GB): 14.71  | busbw (GB): 14.71 
+[2025-02-04 23:56:17,977] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.36 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,979] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.30 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,980] [INFO] [RANK 0] comm op: all_reduce | comm group: tp_group | time (ms): 1.07 | msg size: 16.0 MB | algbw (GB): 14.64  | busbw (GB): 14.64 
+[2025-02-04 23:56:17,982] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.86 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,984] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.82 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,985] [INFO] [RANK 0] comm op: all_reduce | comm group: tp_group | time (ms): 1.05 | msg size: 16.0 MB | algbw (GB): 14.81  | busbw (GB): 14.81 
+[2025-02-04 23:56:17,986] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.31 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,988] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.32 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,989] [INFO] [RANK 0] comm op: all_reduce | comm group: tp_group | time (ms): 1.05 | msg size: 16.0 MB | algbw (GB): 14.86  | busbw (GB): 14.86 
+[2025-02-04 23:56:17,991] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.78 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,993] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.81 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,994] [INFO] [RANK 0] comm op: all_reduce | comm group: tp_group | time (ms): 1.05 | msg size: 16.0 MB | algbw (GB): 14.81  | busbw (GB): 14.81 
+[2025-02-04 23:56:17,995] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.29 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,997] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.29 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:17,998] [INFO] [RANK 0] comm op: all_reduce | comm group: tp_group | time (ms): 1.06 | msg size: 16.0 MB | algbw (GB): 14.76  | busbw (GB): 14.76 
+[2025-02-04 23:56:18,000] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.83 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:18,002] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.82 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:18,003] [INFO] [RANK 0] comm op: all_reduce | comm group: tp_group | time (ms): 1.06 | msg size: 16.0 MB | algbw (GB): 14.72  | busbw (GB): 14.72 
+[2025-02-04 23:56:18,004] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.29 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:18,006] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.28 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:18,007] [INFO] [RANK 0] comm op: all_reduce | comm group: tp_group | time (ms): 1.04 | msg size: 16.0 MB | algbw (GB): 15.01  | busbw (GB): 15.01 
+[2025-02-04 23:56:18,009] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.81 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:18,011] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.82 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
+[2025-02-04 23:56:18,012] [INFO] [RANK 0] comm op: all_reduce | comm group: tp_group | time (ms): 1.05 | msg size: 16.0 MB | algbw (GB): 14.91  | busbw (GB): 14.91 
+[2025-02-04 23:56:18,013] [INFO] [RANK 0] comm op: computation | comm group: None | time (ms): 1.29 | msg size: 0 | algbw (GB): 0 | busbw (GB): 0
