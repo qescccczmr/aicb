@@ -10,6 +10,9 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 """
+import torch
+import math
+import re
 
 from utils.utils import divide, CommType, CommGroup
 from workload_generator.mocked_model.MockedModel import MockedModel, Linear, MockedParam
@@ -178,7 +181,7 @@ class MegatronColumnLinear(MockedModel):
                     comm_type=CommType.computation,
                     msg_size=(
                         (self.seq_len, self.batch_size, self.input_size),
-                        (self.input_size, self.output_size_per_partition),
+                        self.weight.shape,
                     ),
                     stage="forward.MegatronColumnLinear." + self.name,
                 )
@@ -375,7 +378,7 @@ class MegatronMlp(MockedModel):
         return workloads
 
 
-class MOEMLP(MockedModel):
+class GroupedMLP(MockedModel):
     def __init__(
         self,
         batch_size,
@@ -549,8 +552,8 @@ class MegatronTransformorLayer(MockedModel):
         )
         self.pre_mlp_layernorm = FusedLayernorm(hidden_size)
         self.post_attention_layernorm_bias = MockedParam((hidden_size, 1))
-        if moe_enable:
-            self.mlp = MOEMLP(
+        if moe_enable and moe_grouped_gemm:
+            self.mlp = GroupedMLP(
                 batch_size,
                 hidden_size,
                 tp,
@@ -595,7 +598,7 @@ class MegatronEmbedding(MockedModel):
         self.layer_id = 0
         num_embedding_per_partition = divide(padded_vocab_size, tp)
         self.word_embedding = MockedParam(
-            (4 * num_embedding_per_partition, hidden_size), name=self.name
+            (2 * num_embedding_per_partition, hidden_size), name=self.name
         )
         self.tensor_model_parallel_size = tp
         # TODO : position embedding shape is max_sequence_length not sequence_length
@@ -614,6 +617,7 @@ class MegatronEmbedding(MockedModel):
                     stage="forward.MegatronEmbedding",
                 )
             )
+        print(workloads)
         return workloads
 
     def backward(self):
@@ -688,3 +692,280 @@ class MegatronModel(MockedModel):
         workloads.extend(self.embedding.backward())
         assert all([isinstance(workload, LogItem) for workload in workloads.workload])
         return workloads
+# class Config:
+#     padded_vocab_size = 51200
+#     hidden_size = 1024
+#     tensor_model_parallel_size = 4  # 4个设备做张量并行
+#     seq_length = 512
+#     micro_batch = 32
+#     num_attention_heads = 16
+#     ffn_hidden_size = 4096
+#     num_layers = 1  # 仅1层Transformer
+#     expert_model_parallel_size=4
+#     moe_router_topk=4
+#     num_experts=16
+#     moe_grouped_gemm=True
+#     enable_sequence_parallel=True
+#     computation_enable=False
+#     add_bias_linear=False
+#     moe_enable=False
+#     enable_sequence_parallel=True
+#     computation_enable=False
+#     add_bias_linear=False
+# config.py
+# 该配置文件定义了 Megatron 模型及分布式训练相关的所有参数，
+# 参数值均基于你提供的信息。
+
+class Config:
+    # 通信与框架相关
+    frame = 'Megatron'
+    world_size = 4096
+    tensor_model_parallel_size = 4
+    pipeline_model_parallel = 1
+    context_parallel_size = 1
+    pp_rank = -1
+    virtual_pipeline_model_parallel=None
+    untie_embeddings_and_output_weights=True
+    data_parallel_size=1
+    # 全局与微批次设置
+    global_batch = 8192
+    micro_batch = 1
+    epoch_num = 1
+    # 开启计算相关
+    computation_enable = True
+    dtype = 'bfloat16'  # 数据类型，支持 'bfloat16', 'float16', 'float32'
+
+    # 前馈网络与 Transformer 层参数
+    hidden_size = 4096
+    num_layers = 40
+    seq_length = 4096
+    num_attention_heads = 32
+    ffn_hidden_size = 10880
+
+    # 词表与位置编码
+    vocab_size = 50257
+    max_position_embeddings = 4096
+    padded_vocab_size = 50688
+
+    # 模型名称（如 'gpt_7B'）
+    model_name = 'gpt_7B'
+
+    # 其他模型相关设置
+    add_bias_linear = False
+    use_flash_attn = False
+    swiglu = True
+    stage = 3
+    amp_enabled = False
+
+    # 通信相关（例如梯度通信的 bucket 大小等）
+    reduce_bucket_size = 500000000
+    allgather_bucket_size = 500000000
+    contiguous_gradients = False
+
+    # 参数/模型持久化和内存阈值设置
+    param_persistence_threshold = 100000
+    model_persistence_threshold = 9223372036854775807
+    max_live_parameters = 1000000000
+    prefetch_bucket_size = 1000000000
+
+    # 是否启用序列并行和分布式优化器
+    enable_sequence_parallel = False
+    use_distributed_optimizer = True
+    make_vocab_size_divisible_by = 128
+    overlap_grad_reduce = False
+    group_query_attention=False
+    # 通信测试相关（微测试起始和结束大小、通信类型、迭代次数等）
+    begin_size = 1048576
+    end_size = 1048576
+    test_comm = 'all_reduce'
+    iter_num = 500
+    multi_all_reduce_enable = 0
+
+    # MoE（混合专家）相关设置（此处未启用 MoE）
+    moe_enable = False
+    expert_model_parallel_size = 1
+    num_experts = 1
+    moe_router_topk = 1
+    moe_grouped_gemm = False
+
+    # 其他选项
+    activation_func = None
+    overlap_version = False
+    aiob_enable = True
+    comp_filepath = None
+
+    # 激活与前馈网络融合相关
+    gated_linear_unit = True
+    bias_gelu_fusion = False
+    openai_gelu = False
+    onnx_safe = False
+    squared_relu = False
+    recompute_activations = False
+
+    # 数据并行（DP）相关
+    dp_num = 1024
+    num_microbatches = 8
+
+    # 模型参数数量（一般由模型初始化后计算得到）
+    model_param = 1579073536   
+        
+
+config = Config()
+model = MegatronModel(config)
+workload = model.forward()
+workload.dump("/cpfs04/user/chengqinxiu/SimAI/aicb/workload_generator/mocked_model/example_workload")  # 导出为CSV
+from workload_generator.mocked_model.AiobMegatron import MegatronModel as AiobMegatronModel
+# class Config1:
+#     # 通信框架（一般为 Megatron）
+#     frame = "Megatron"
+    
+#     # 全局训练相关
+#     world_size = 32
+#     global_batch = 1024
+#     micro_batch = 1
+#     epoch_num = 1
+
+#     # 模型并行相关
+#     tensor_model_parallel_size = 8
+#     pipeline_model_parallel = 1  # 不启用流水线并行
+
+#     # Transformer 模型参数（以 gpt_13B 为例）
+#     num_layers = 40
+#     seq_length = 4096
+#     hidden_size = 5120
+#     num_attention_heads = 40
+
+#     # 前馈网络：通常设置为 4 倍 hidden_size
+#     ffn_hidden_size = 4 * hidden_size  # 20480
+
+#     # 位置编码和词表参数
+#     max_position_embeddings = 4096
+#     vocab_size = 50257  # 原始 GPT 词表大小
+
+#     # 模型规模选择（13 表示 gpt_13B）
+#     model_size = 13
+#     model_name = "gpt_13B"
+
+#     # 是否启用 Flash Attention 加速注意力计算（默认 False）
+#     use_flash_attn = False
+
+#     # 是否使用 swiglu 激活（默认 False）
+#     swiglu = False
+
+#     # 是否启用序列并行，默认可设为 False；若启用，则模型内部部分计算会仅在局部处理后再重复扩展
+#     enable_sequence_parallel = False
+
+#     # 计算时间统计文件（默认未指定）
+#     comp_filepath = ""
+
+#     # MoE（混合专家）相关参数，若不使用则保留默认值
+#     num_experts = 1
+#     moe_enable = False
+#     # 如果启用 MoE，还可能需要设置 moe_router_topk、expert_model_parallel_size、moe_grouped_gemm 等，
+#     # 此处默认不启用 MoE
+
+#     # 是否开启激活重计算以降低显存占用（默认 False）
+#     recompute_activations = False
+
+#     # 数据类型（可选："float32", "float16", "bfloat16"），这里推荐使用 float16
+#     dtype = "float16"
+#     padded_vocab_size=16
+#     expert_model_parallel_size=8
+#     moe_router_topk=4
+#     moe_grouped_gemm=True
+#     enable_sequence_parallel=True
+#     computation_enable=False
+#     add_bias_linear=False
+#     moe_enable=False
+#     gated_linear_unit=True
+#     openai_gelu=True
+#     squared_relu=True
+#     bias_gelu_fusion=True
+#     ffn_hidden_size=20480
+#     tp=1
+#     gated_linear_unit=True
+#     model_param=1300
+#     openai_gelu=True
+#     dp_num=1
+#     # 其他参数，如是否使用分布式优化器、路由 topk 值、专家并行参数等，
+#     # 根据实际需要添加。如果需要，可继续扩展该配置类。
+    
+
+#     # 其他配置参数请根据实际需求补充...
+# config = Config1()
+# measure_model = AiobMegatronModel(config)
+# measure_model.train()
+# batch_size = config.micro_batch
+# vocab_size=config.padded_vocab_size
+# tp=config.tensor_model_parallel_size
+# seq_len = config.seq_length
+# device = "cuda"
+# dtype = torch.float32
+
+# # # total_input_1 = torch.rand(args.seq_len,
+# # #                                       args.batch_size,
+# # #                                       args.hidden_size,
+# # #                                       device=device).to(dtype)
+# masked_input = torch.randint(
+#     0,
+#     math.ceil(vocab_size / tp),
+#     (batch_size, seq_len),
+#     device=device,
+#     dtype=torch.int64,
+# )
+# filepath = measure_model(masked_input)
+# attention_avg_sum = 0.0
+# mlp_avg_sum = 0.0
+# other_avgs = {}
+# grad_forward = 0.0
+# grad_backward = 0.0
+
+# section_header_re = re.compile(r"^(\w+):")
+# time_gpu_avg_re = re.compile(r"time_gpu_avg:\s+(\d+(\.\d+)?)")
+# time_gpu_min_re = re.compile(r"time_gpu_min:\s+(\d+(\.\d+)?)")
+
+# with open(filepath, "r") as file:
+#     current_section = None
+
+#     for line in file:
+#         header_match = section_header_re.match(line)
+#         if header_match:
+#             current_section = header_match.group(1).strip()
+
+#         avg_match = time_gpu_avg_re.search(line)
+#         min_match = time_gpu_min_re.search(line)
+#         if current_section == "param_time":
+#             if min_match:
+#                 grad_forward = float(min_match.group(1)) * 1000 #us
+#             if avg_match:
+#                 grad_backward = float(avg_match.group(1)) * 1000
+#         elif avg_match and current_section:
+#             avg_value = float(avg_match.group(1)) * 1000
+#             if "atten" in current_section or current_section == "layernorm":
+#                 attention_avg_sum += avg_value
+#             elif "mlp" in current_section or current_section == "layernorm2":
+#                 mlp_avg_sum += avg_value
+#             else:
+#                 other_avgs[current_section] = avg_value
+
+# # 四舍五入并转换为整数
+# attention_forward = round(attention_avg_sum)
+# attention_backward = attention_forward
+# mlp_forward = round(mlp_avg_sum)
+# mlp_backward = mlp_forward
+# grad_backward = round(grad_backward)
+# grad_forward = round(grad_forward)
+# other_avgs_int = {k: round(v) for k, v in other_avgs.items() if k != "param_time"}
+
+# a100_compute_cache = {
+#     "attention_forward": attention_forward,
+#     "attention_backward": attention_backward,
+#     "mlp_forward": mlp_forward,
+#     "mlp_backward": mlp_backward,
+#     "grad_forward": grad_forward,
+#     "grad_backward": grad_backward,
+# }
+# a100_compute_cache.update(other_avgs_int)
+# for key, value in a100_compute_cache.items():
+#             print(f"    '{key}' : {value},")
+# print("}")

@@ -28,8 +28,8 @@ except ImportError as e:
     print("Failed to import 'einops'. Functions using 'rearrange' might not work.")
 from typing import Callable, Optional
 
-try:
-    from flash_attn.flash_attn_interface import flash_attn_unpadded_func
+try:from flash_attn.flash_attn_interface import flash_attn_unpadded_func
+    
 except ImportError:
     try:
         from flash_attn.flash_attn_interface import (
@@ -38,7 +38,7 @@ except ImportError:
     except ImportError:
         flash_attn_unpadded_func = None
 
-
+NUM_BYTES_IN_MEGABYTE = 1024 * 1024
 class MegatronModel(torch.nn.Module):
     def __init__(self, args=None):
         super(MegatronModel, self).__init__()
@@ -59,47 +59,45 @@ class MegatronModel(torch.nn.Module):
         self.grad_param = Grad_param(self.args)
 
     def forward(self, input):
-        # if self.args.warm_up:
-        #     for _ in range(10):
-
-        #         layernorm = self.Layernorm._apply()
-        #         atten_qkv = self.Attention._apply_attenqkv()
-        #         if self.args.use_flash_attn :
-        #             atten_core = self.Attention._apply_flash_atten()
-        #         else:
-        #             atten_core_qk = self.Attention._apply_QK()
-        #             atten_core_softmax = self.Attention._apply_Softmax()
-        #             atten_core_contex = self.Attention._apply_Contex()
-        #         atten_linear = self.Attention._apply_Linear()
-        #         layernorm2 = self.Layernorm._apply()
-        #         mlp_linear_1 = self.Mlp._apply_Linear1()
-        #         mlp_gelu = self.Mlp._apply_activation()
-        #         mlp_linear_2 = self.Mlp._apply_Linear2()
-
         for _ in range(self.args.epoch_num):
             # #Embedding
-            Emb_output, Emb_time = self.Embedding(input)
-            self.time_list.setdefault("Emb", []).append({"time_gpu": Emb_time})
-
+            Emb_output, Emb_time, weight_and_optimizer_memory, activation_memory, report_theoretical_memory = self.Embedding(input)
+            self.time_list.setdefault("Emb", []).append({
+                "time_gpu": Emb_time,
+                "embedding weight_and_optimizer_memory": weight_and_optimizer_memory,
+                "embedding activation_memory": activation_memory,
+                "embedding report_theoretical_memory": report_theoretical_memory
+            })
             for _ in range(self.args.num_layers):
                 # #layernorm
-                lay_out, layernorm = self.Layernorm(Emb_output)
-                self.time_list.setdefault("layernorm", []).append(
-                    {"time_gpu": layernorm}
+                lay_out, layernorm,weight_and_optimizer_memory, activation_memory, report_theoretical_memory = self.Layernorm(Emb_output)
+                self.time_list.setdefault("layernorm atten", []).append(
+                    {"time_gpu": layernorm,
+                     "layernorm  weight_and_optimizer_memory": weight_and_optimizer_memory,
+                     "layernorm activation_memory": activation_memory,
+                    "report_theoretical_memory_layernorm": report_theoretical_memory
+                     }
                 )
                 if self.args.use_flash_attn:
                     atten_output, atten_qkv, atten_core, atten_linear = self.Attention(
                         lay_out
                     )
-                    self.time_list.setdefault("atten_qkv", []).append(
-                        {"time_gpu": atten_qkv}
-                    )
-                    self.time_list.setdefault("atten_flash", []).append(
-                        {"time_gpu": atten_core}
-                    )
-                    self.time_list.setdefault("atten_linear", []).append(
-                        {"time_gpu": atten_linear}
-                    )
+                    self.time_list.setdefault("flash atten", []).append(
+                    {"time_gpu_all": atten_qkv+atten_core+atten_linear,
+                     "time_gpu_atten_qkv": atten_qkv,
+                     "time_gpu_atten_core": atten_core,
+                     "time_gpu_atten_linear": atten_linear
+                     }
+                )
+                    # self.time_list.setdefault("atten_qkv", []).append(
+                    #     {"time_gpu": atten_qkv}
+                    # )
+                    # self.time_list.setdefault("atten_flash", []).append(
+                    #     {"time_gpu": atten_core}
+                    # )
+                    # self.time_list.setdefault("atten_linear", []).append(
+                    #     {"time_gpu": atten_linear}
+                    # )
                 else:
                     (
                         atten_output,
@@ -108,52 +106,68 @@ class MegatronModel(torch.nn.Module):
                         atten_core_softmax,
                         atten_core_contex,
                         atten_linear,
+                        weight_and_optimizer_memory,
+                        activation_memory,
+                        report_theoretical_memory,
                     ) = self.Attention(lay_out)
-                    self.time_list.setdefault("atten_qkv", []).append(
-                        {"time_gpu": atten_qkv}
-                    )
-                    self.time_list.setdefault("atten_core_qk", []).append(
-                        {"time_gpu": atten_core_qk}
-                    )
-                    self.time_list.setdefault("atten_core_softmax", []).append(
-                        {"time_gpu": atten_core_softmax}
-                    )
-                    self.time_list.setdefault("atten_core_contex", []).append(
-                        {"time_gpu": atten_core_contex}
-                    )
-                    self.time_list.setdefault("atten_linear", []).append(
-                        {"time_gpu": atten_linear}
-                    )
+                    self.time_list.setdefault("atten", []).append(
+                    {
+                      "time_gpu_all": atten_qkv + atten_core_qk + atten_core_softmax + atten_core_contex + atten_linear,
+                      "time_gpu_atten_qkv": atten_qkv,
+                      "time_gpu_atten_core_qk": atten_core_qk,
+                      "time_gpu_atten_core_softmax": atten_core_softmax,
+                      "time_gpu_atten_core_contex": atten_core_contex,
+                      "time_gpu_atten_linear": atten_linear,
+                      "atten weight_and_optimizer_memory": weight_and_optimizer_memory,
+                      "atten activation_memory": activation_memory,
+                      "report_theoretical_memory_atten": report_theoretical_memory
+
+                     })
+      
                 # layernorm
-                lay2_out, layernorm2 = self.Layernorm(atten_output)
+                lay2_out, layernorm2, weight_and_optimizer_memory, activation_memory, report_theoretical_memory = self.Layernorm(atten_output)
+                self.time_list.setdefault("Layernorm mlp", []).append(
+                    {
+                      "time_gpu_all": layernorm2,
+                      "time_gpu_laynorm": layernorm2,
+                      "Layernorm mlp weight_and_optimizer_memory": weight_and_optimizer_memory,
+                      "Layernorm mlp activation_memory": activation_memory,
+                      "report_theoretical_memory_Layernorm mlp": report_theoretical_memory
 
+                     })
                 # mlp layer
-                mlp_out, mlp_linear_1, mlp_gelu, mlp_linear_2 = self.Mlp(lay2_out)
-                self.time_list.setdefault("layernorm2", []).append(
-                    {"time_gpu": layernorm2}
-                )
-                self.time_list.setdefault("mlp_linear_1", []).append(
-                    {"time_gpu": mlp_linear_1}
-                )
-                self.time_list.setdefault("mlp_gelu", []).append({"time_gpu": mlp_gelu})
-                self.time_list.setdefault("mlp_linear_2", []).append(
-                    {"time_gpu": mlp_linear_2}
-                )
+                mlp_out, mlp_linear_1, mlp_gelu, mlp_linear_2,weight_and_optimizer_memory, activation_memory, report_theoretical_memory = self.Mlp(lay2_out)
+                self.time_list.setdefault("mlp", []).append(
+                    {
+                      "time_gpu_all": mlp_linear_1+mlp_gelu+mlp_linear_2,
+                      "time_gpu_mlp_linear_1": mlp_linear_1,
+                      "time_gpu_mlp_gelu": mlp_gelu,
+                      "time_gpu_mlp_linear_2": mlp_linear_2,
+                      "mlp weight_and_optimizer_memory": weight_and_optimizer_memory,
+                      "mlp activation_memory": activation_memory,
+                      "report_theoretical_memory_mlp": report_theoretical_memory
 
-            lay_post__out, layernorm_post = self.Layernorm(mlp_out)
-            self.time_list.setdefault("layernorm_post", []).append(
-                {"time_gpu": layernorm_post}
-            )
+                     })
+            lay_post__out, layernorm_post,wight_and_optimizer_memory, activation_memory, report_theoretical_memory = self.Layernorm(mlp_out)
+            self.time_list.setdefault("laynorm post", []).append(
+                    {
+                      "time_gpu_all": layernorm_post,
+                      "time_gpu_layernorm_post": layernorm_post,
+                      "layernorm_post weight_and_optimizer_memory": weight_and_optimizer_memory,
+                      "layernorm_post activation_memory": activation_memory,
+                      "report_theoretical_memory_layernorm_post": report_theoretical_memory
+                     })
+
             logit_out, logit_time = self.logit(lay_post__out)
-            self.time_list.setdefault("logit_time", []).append({"time_gpu": logit_time})
+            self.time_list.setdefault("logit_time", []).append({"time_gpu_logit_time": logit_time})
             _, param_time = self.grad_param._apply()
 
-            self.time_list.setdefault("param_time", []).append({"time_gpu": param_time})
+            self.time_list.setdefault("param_time", []).append({"time_gpu_param_time": param_time})
         
-        filepath = write_op(self.time_list, self.args)
-        process_all_keys(filepath)
+            filepath = write_op(self.time_list, self.args)
+            process_all_keys(filepath,self.time_list)
         
-        return filepath
+            return filepath
 
 
 class LinearWithGradAccumulationAndAsyncCommunication(torch.autograd.Function):
@@ -272,11 +286,12 @@ class MegatronEmbedding(torch.nn.Module):
     def __init__(self, args=None):
         super(MegatronEmbedding, self).__init__()
         self.tp = args.tensor_model_parallel_size
+        self.args = args
         micro_batch = args.micro_batch
         seq_len = args.seq_length
         hidden_size = args.hidden_size
         max_position_embeddings = args.max_position_embeddings
-        self.vocab_size = args.padded_vocab_size
+        self.vocab_size = args.vocab_size
         device = torch.cuda.current_device()
         if args.dtype == "bfloat16":
             self.dtype = torch.bfloat16
@@ -334,8 +349,90 @@ class MegatronEmbedding(torch.nn.Module):
         result, emb_time = self._apply(input)
 
         result = result.to(self.dtype)
+        # ---------------------------
+        # 以下代码实现嵌入层的内存计算：
+        # 1. 计算权重和优化器所占内存：
+        #args.untie_embeddings_and_output_weights: 是否绑定输入嵌入和输出权重
+        #self.args.data_parallel_size: 数据并行大小
+        #args.num_microbatches: 微批次数量
+        #
+        # 1. 计算权重和优化器所占内存：
+        #    - 总参数数量（词嵌入部分）：embedding_size = hidden_size * padded_vocab_size
+        #    - 如果不绑定输入嵌入和输出权重，则需要计算 2 * embedding_size，否则仅为 embedding_size
+        #    - 每个参数的字节数：
+        #         如果不使用分布式优化器，取 18 字节；
+        #         如果使用分布式优化器，则为：6 + (12 / data_parallel_size)
+        #
+        # 2. 计算激活内存：
+        #    根据提供公式，嵌入层的激活内存包括：
+        #       - Input to embedding：8 * seq_length * micro_batch * pipeline_model_parallel
+        #       - Dropout in embedding：seq_length * micro_batch * hidden_size * pipeline_model_parallel
+        #    最后除以 tensor_model_parallel_size 得到每个分片实际占用内存。
+        # ---------------------------
+        # 计算权重（embedding）参数数量
+        verbose = True
 
-        return result, emb_time
+        embedding_size = self.args.hidden_size * self.args.padded_vocab_size
+  
+        effective_embedding_params = embedding_size
+
+        # 分片后，每个 TP 分片上所包含的 embedding 参数数量
+        num_parameters_on_most_loaded_model_shard = effective_embedding_params / self.args.tensor_model_parallel_size
+        if self.args.untie_embeddings_and_output_weights and self.args.pipeline_model_parallel == 1:
+            num_parameters_on_most_loaded_model_shard += (embedding_size / self.args.tensor_model_parallel_size)
+
+        # 每个参数所占字节数，根据是否使用分布式优化器决定
+        if not self.args.use_distributed_optimizer  :
+            bytes_per_param = 18
+        else:
+            bytes_per_param = 6 + (12 / self.args.data_parallel_size)
+
+        # 权重与优化器内存（转换为 MB）
+        weight_and_optimizer_memory = num_parameters_on_most_loaded_model_shard * bytes_per_param / NUM_BYTES_IN_MEGABYTE
+
+        # 计算激活内存
+        # 输入到 embedding 的激活
+        activation_input = 8 * self.args.seq_length * self.args.micro_batch * self.args.pipeline_model_parallel
+        # embedding 层 dropout 的激活
+        activation_dropout = self.args.seq_length * self.args.micro_batch * self.args.hidden_size * self.args.pipeline_model_parallel
+        activation_memory = activation_input + activation_dropout
+
+        # 考虑流水线调度的额外内存开销
+        if self.args.virtual_pipeline_model_parallel is not None:
+            interleaved_schedule_memory_penalty = 1 + (
+                (self.args.pipeline_model_parallel - 1)
+                / (self.args.pipeline_model_parallel * self.args.virtual_pipeline_model_parallel)
+            )
+            in_flight_microbatches = math.ceil(
+                interleaved_schedule_memory_penalty * self.args.pipeline_model_parallel
+            )
+            activation_memory *= interleaved_schedule_memory_penalty
+        elif self.args.pipeline_model_parallel > 1:
+            if self.args.num_microbatches is not None:
+                activation_memory *= min(1, self.args.num_microbatches / self.args.pipeline_model_parallel)
+                in_flight_microbatches = min(self.args.num_microbatches, self.args.pipeline_model_parallel)
+            else:
+                in_flight_microbatches = self.args.pipeline_model_parallel
+           
+
+        # 当不使用流水线并行时，需额外为输出层和 CE loss 分配激活内存
+        if self.args.pipeline_model_parallel == 1:
+            activation_memory += (
+                self.args.seq_length
+                * self.args.micro_batch
+                * self.args.hidden_size
+                * 4
+                * (1 + (self.args.vocab_size / self.args.hidden_size))
+            )
+
+        # 将激活内存转换为 MB（先除以 tensor 并行分片数，再转换为 MB）
+        activation_memory = activation_memory / self.args.tensor_model_parallel_size / NUM_BYTES_IN_MEGABYTE
+
+        # 总理论内存（权重+激活），单位 MB
+        report_theoretical_memory = weight_and_optimizer_memory + activation_memory
+
+        # 返回结果（假设 result, emb_time 是上面已有的变量）
+        return result, emb_time, weight_and_optimizer_memory, activation_memory, report_theoretical_memory
 
 
 class MegatronLayernorm(torch.nn.Module):
@@ -344,6 +441,7 @@ class MegatronLayernorm(torch.nn.Module):
         self.tp = args.tensor_model_parallel_size
         self.enable_sequence_parallel = args.enable_sequence_parallel
         hidden_size = args.hidden_size
+        self.args=args
         device = torch.cuda.current_device()
         if args.dtype == "bfloat16":
             self.dtype = torch.bfloat16
@@ -375,8 +473,76 @@ class MegatronLayernorm(torch.nn.Module):
         lay_out, lay_time = self._apply(hidden_states)
         if self.enable_sequence_parallel:
             lay_out = lay_out.repeat((self.tp, 1, 1))
+              # -------------------------------
+        # 以下部分根据理论内存计算公式，计算 layernorm 部分内存占用：
+        #
+        # 1. 参数（权重和偏置）内存：
+        #    layernorm 参数总数 = 2 * hidden_size
+        #    假设在 tensor 并行下，各分片获得的参数数量为 total / tensor_model_parallel_size
+        #    每个参数的字节数取决于是否使用分布式优化器：
+        #       - 若不使用：18 字节；
+        #       - 若使用：6 + (12 / data_parallel_size)
+        #
+        # 2. 激活内存：
+        #    假设 layernorm 的输入（和输出）激活张量形状为 [seq_length, micro_batch, hidden_size]
+        #    这里采用一个经验值：每个激活元素占 18 字节（可根据实际情况调整）
+        #    由于可能采用 tensor 并行，激活内存需要除以 tensor_model_parallel_size。
+        #
+        # 3. 最后将两部分相加得到总理论内存占用（单位转换为 MB）。
+        # -------------------------------
+        verbose = True
+        # 计算 layernorm 参数数目
+        print("hidden_size", self.args.hidden_size)
+        layernorm_params = 2 * self.args.hidden_size  # weight 和 bias
+        if verbose:
+            print(
+            f"Number of parameters in layernorm layers in billions: "
+            f"{layernorm_params/1024 : .2f}"
+            )
 
-        return lay_out, lay_time
+        # Most loaded model shard has (1/pp_size transformer layers + 1 embedding layer) / tp_size.
+        num_parameters_on_most_loaded_model_shard =layernorm_params / self.args.pipeline_model_parallel/ self.args.tensor_model_parallel_size
+        if verbose:
+            print(
+                f"Number of parameters in most loaded shard in billions: "
+                f"{num_parameters_on_most_loaded_model_shard / 10**9:.4f}"
+            )
+
+
+        num_bytes_per_parameter = (
+            18 if not self.args.use_distributed_optimizer else 6 + (12 / self.args.data_parallel_size)
+        )
+        weight_and_optimizer_memory = (num_parameters_on_most_loaded_model_shard * num_bytes_per_parameter)/NUM_BYTES_IN_MEGABYTE
+        activation_memory = self.args.seq_length * self.args.micro_batch * self.args.hidden_size*4
+            # Multiply by interleaved PP memory factor.
+        if self.args.pipeline_model_parallel is not None:
+            interleaved_schedule_memory_penalty = 1 + (
+                (self.args.pipeline_model_parallel - 1)
+                / (self.args.pipeline_model_parallel * self.args.pipeline_model_parallel)
+            )
+            in_flight_microbatches = math.ceil(
+                interleaved_schedule_memory_penalty * self.args.pipeline_model_parallel
+            )
+            if verbose:
+                print(
+                    f"Memory penalty from interleaved schedule: {interleaved_schedule_memory_penalty:.2f}"
+                )
+                print(f"Number of in-flight microbatches: {in_flight_microbatches}")
+            activation_memory *= interleaved_schedule_memory_penalty
+
+        # If using non-interleaved schedule, number of microbatches in pipeline can be less than pp_size,
+        # so discount accordingly.
+        if self.args.virtual_pipeline_model_parallel is None and self.args.pipeline_model_parallel > 1:
+            if num_microbatches is not None:
+                activation_memory *= min(1, num_microbatches / self.args.pipeline_model_parallel)
+                in_flight_microbatches = min(num_microbatches, self.args.pipeline_model_parallel)
+            else:
+                in_flight_microbatches = self.args.pipeline_model_parallel
+            if verbose:
+                print(f"Number of in-flight microbatches: {in_flight_microbatches}")
+        activation_memory = activation_memory / self.args.tensor_model_parallel_size / NUM_BYTES_IN_MEGABYTE    
+        report_theoretical_memory = weight_and_optimizer_memory + activation_memory
+        return lay_out, lay_time, weight_and_optimizer_memory, activation_memory, report_theoretical_memory
 
 
 class MegatronAtten(torch.nn.Module):
@@ -384,6 +550,7 @@ class MegatronAtten(torch.nn.Module):
         super(MegatronAtten, self).__init__()
         self.enable_sequence_parallel = args.enable_sequence_parallel
         self.tp = args.tensor_model_parallel_size
+        self.args=args
         micro_batch = args.micro_batch
         seq_len = args.seq_length
         hidden_size = args.hidden_size
@@ -574,11 +741,12 @@ class MegatronAtten(torch.nn.Module):
         )
         return output_parallel
 
-    def forward(self, hideen_states):
-        qkv_out, qkv_time = self._apply_attenqkv(hideen_states)
-
-        query_layer, key_layer, value_layer = qkv_out
+    def forward(self, hidden_states):
         
+        # 1. 计算 Q/K/V
+        qkv_out, qkv_time = self._apply_attenqkv(hidden_states)
+        query_layer, key_layer, value_layer = qkv_out
+
         output_size = (
             query_layer.size(1),
             query_layer.size(2),
@@ -594,7 +762,90 @@ class MegatronAtten(torch.nn.Module):
         softmax_results, softmax_time = self._apply_Softmax(attention_scores)
         context_layer, contex_time = self._apply_Contex(softmax_results, value_layer)
         output, attrn_linear_time = self._apply_Linear(context_layer)
-        return output, qkv_time, qk_time, softmax_time, contex_time, attrn_linear_time
+        
+        verbose = True
+
+        # -------------------------------
+        # Attention 部分的参数估算
+        # 计算 Attention 部分的系数：
+        if not hasattr(self.args, "num_query_groups") or not self.args.num_query_groups:
+            self.args.num_query_groups = self.args.num_attention_heads
+        attention_component = (1 + (self.args.num_query_groups / self.args.num_attention_heads))
+        # Transformer 层中所有参数的公共因子：2 * num_layers * hidden_size^2
+        common_factor = 2 * self.args.num_layers * self.args.hidden_size * self.args.hidden_size
+        # Attention 部分参数数量（近似估算）
+        attention_parameters = common_factor * attention_component
+        if verbose:
+            print(
+                f"Number of parameters in attention_parameters in billions: "
+                f"{attention_parameters / 10**9: .2f}"
+            )
+        
+        # 定义 embedding_size（假设 embedding 层参数为 hidden_size * vocab_size）
+        embedding_size = self.args.hidden_size * self.args.vocab_size
+        
+        # 计算最繁忙的模型分片所承担的参数数量
+        num_parameters_on_most_loaded_model_shard = (
+            (attention_parameters / self.args.pipeline_model_parallel) + embedding_size
+        ) / self.args.tensor_model_parallel_size
+        if self.args.untie_embeddings_and_output_weights and self.args.pipeline_model_parallel == 1:
+            num_parameters_on_most_loaded_model_shard += (
+                embedding_size / self.args.tensor_model_parallel_size
+            )
+        if verbose:
+            print(
+                f"Number of parameters in most loaded shard in billions: "
+                f"{num_parameters_on_most_loaded_model_shard / 10**9:.4f}"
+            )
+        
+        # 每个参数的内存字节数，根据是否使用分布式优化器来确定
+        num_bytes_per_parameter = (
+            18 if not self.args.use_distributed_optimizer 
+            else 6 + (12 / self.args.data_parallel_size)
+        )
+        weight_and_optimizer_memory = num_parameters_on_most_loaded_model_shard * num_bytes_per_parameter
+        weight_and_optimizer_memory = weight_and_optimizer_memory / NUM_BYTES_IN_MEGABYTE
+
+        # -------------------------------
+        # 计算激活内存
+        # 根据公式，激活内存由两部分组成：
+        # 1. 11 * s * b * h  —— 例如来自 attention 的某些激活
+        # 2. 5 * num_attention_heads * s^2 * b  —— 例如来自 softmax 输出及其 dropout mask
+        activation_memory = (self.args.seq_length * self.args.micro_batch * self.args.hidden_size * 11) \
+                            + (5 * self.args.num_attention_heads * self.args.seq_length * self.args.seq_length * self.args.micro_batch)
+        
+        # Multiply by interleaved PP memory factor.
+        if self.args.pipeline_model_parallel is not None:
+            interleaved_schedule_memory_penalty = 1 + (
+                (self.args.pipeline_model_parallel - 1)
+                / (self.args.pipeline_model_parallel * self.args.pipeline_model_parallel)
+            )
+            in_flight_microbatches = math.ceil(
+                interleaved_schedule_memory_penalty * self.args.pipeline_model_parallel
+            )
+            if verbose:
+                print(
+                    f"Memory penalty from interleaved schedule: {interleaved_schedule_memory_penalty:.2f}"
+                )
+                print(f"Number of in-flight microbatches: {in_flight_microbatches}")
+            activation_memory *= interleaved_schedule_memory_penalty
+
+        # 如果使用非交错调度且流水线并行大于 1，则根据在飞行的微批次数折扣激活内存
+        if self.args.virtual_pipeline_model_parallel is None and self.args.pipeline_model_parallel > 1:
+            if self.args.num_microbatches is not None:
+                activation_memory *= min(1, self.args.num_microbatches / self.args.pipeline_model_parallel)
+                in_flight_microbatches = min(self.args.num_microbatches, self.args.pipeline_model_parallel)
+            else:
+                in_flight_microbatches = self.args.pipeline_model_parallel
+            if verbose:
+                print(f"Number of in-flight microbatches: {in_flight_microbatches}")
+        
+        activation_memory = activation_memory / self.args.tensor_model_parallel_size / NUM_BYTES_IN_MEGABYTE
+
+        # 总理论内存（单位 MB）
+        report_theoretical_memory = weight_and_optimizer_memory + activation_memory
+
+        return output, qkv_time, qk_time, softmax_time, contex_time, attrn_linear_time, weight_and_optimizer_memory, activation_memory, report_theoretical_memory
 
 
 class MegatronFlashAtten(torch.nn.Module):
@@ -738,6 +989,7 @@ class MegatronMlp(torch.nn.Module):
         super(MegatronMlp, self).__init__()
         self.tp = args.tensor_model_parallel_size
         self.enable_sequence_parallel = args.enable_sequence_parallel
+        self.args=args
         micro_batch = args.micro_batch
         seq_len = args.seq_length
         self.add_bias_linear = False
@@ -825,12 +1077,92 @@ class MegatronMlp(torch.nn.Module):
             tp=self.tp,
         )
         return output_parallel
-
     def forward(self, hidden_state):
         l1_out, l1_time = self._apply_Linear1(hidden_state)
         act_out, act_time = self._apply_activation(l1_out)
         l2_out, l2_time = self._apply_Linear2(act_out)
-        return l2_out, l1_time, act_time, l2_time
+        verbose = True
+        if not hasattr(self.args, "num_query_groups") or not self.args.num_query_groups:
+            self.args.num_query_groups = self.args.num_attention_heads
+
+        # 提取 Attention 部分的计算
+        # 注意：这里假设 self.args.num_query_groups 和 self.args.num_attention_heads 均已定义
+        attention_component = (1 + (self.args.num_query_groups / self.args.num_attention_heads))
+
+        # Transformer 层中所有参数的公共因子：2 * num_layers * hidden_size^2
+        common_factor = 2 * self.args.num_layers * self.args.hidden_size * self.args.hidden_size
+
+        # Attention 部分参数数量（近似估算）
+        attention_parameters = common_factor * attention_component
+        if verbose:
+            print(
+                f"Number of parameters in attention_parameters in billions: {attention_parameters / 10**9: .2f}"
+            )
+        
+        # 定义 embedding_size（假设 embedding 层参数数量为 hidden_size * vocab_size）
+        embedding_size = self.args.hidden_size * self.args.vocab_size
+
+        # 计算最繁忙模型分片承担的参数数量
+        num_parameters_on_most_loaded_model_shard = (
+            (attention_parameters / self.args.pipeline_model_parallel) + embedding_size
+        ) / self.args.tensor_model_parallel_size
+        if self.args.untie_embeddings_and_output_weights and self.args.pipeline_model_parallel == 1:
+            num_parameters_on_most_loaded_model_shard += (
+                embedding_size / self.args.tensor_model_parallel_size
+            )
+    
+        if verbose:
+            print(
+                f"Number of parameters in most loaded shard in billions: {num_parameters_on_most_loaded_model_shard / 10**9:.4f}"
+            )
+        
+        # 每个参数所占字节数，根据是否使用分布式优化器来确定
+        num_bytes_per_parameter = (
+            18 if not self.args.use_distributed_optimizer 
+            else 6 + (12 / self.args.data_parallel_size)
+        )
+        weight_and_optimizer_memory = num_parameters_on_most_loaded_model_shard * num_bytes_per_parameter
+        weight_and_optimizer_memory = weight_and_optimizer_memory / NUM_BYTES_IN_MEGABYTE
+
+        # ---------------------------
+        # 计算激活内存：
+        # 根据公式：激活内存 = 11 * seq_length * micro_batch * hidden_size
+        #                 + 5 * num_attention_heads * seq_length^2 * micro_batch
+        activation_memory = (self.args.seq_length * self.args.micro_batch * self.args.hidden_size * 11) \
+                            + (5 * self.args.num_attention_heads * self.args.seq_length * self.args.seq_length * self.args.micro_batch)
+        
+        # Multiply by interleaved PP memory factor.
+        if self.args.pipeline_model_parallel is not None:
+            interleaved_schedule_memory_penalty = 1 + (
+                (self.args.pipeline_model_parallel - 1)
+                / (self.args.pipeline_model_parallel * self.args.pipeline_model_parallel)
+            )
+            in_flight_microbatches = math.ceil(
+                interleaved_schedule_memory_penalty * self.args.pipeline_model_parallel
+            )
+            if verbose:
+                print(f"Memory penalty from interleaved schedule: {interleaved_schedule_memory_penalty:.2f}")
+                print(f"Number of in-flight microbatches: {in_flight_microbatches}")
+            activation_memory *= interleaved_schedule_memory_penalty
+
+        # 如果不使用交错调度且流水线并行大于 1，则折扣激活内存
+        if self.args.virtual_pipeline_model_parallel is None and self.args.pipeline_model_parallel > 1:
+            if self.args.num_microbatches is not None:
+                activation_memory *= min(1, self.args.num_microbatches / self.args.pipeline_model_parallel)
+                in_flight_microbatches = min(self.args.num_microbatches, self.args.pipeline_model_parallel)
+            else:
+                in_flight_microbatches = self.args.pipeline_model_parallel
+            if verbose:
+                print(f"Number of in-flight microbatches: {in_flight_microbatches}")
+        
+        activation_memory = activation_memory / self.args.tensor_model_parallel_size / NUM_BYTES_IN_MEGABYTE
+
+        # 总理论内存（单位 MB）
+        report_theoretical_memory = weight_and_optimizer_memory + activation_memory
+
+        return l2_out, l1_time, act_time, l2_time, weight_and_optimizer_memory, activation_memory, report_theoretical_memory
+
+
 
 
 class logit(torch.nn.Module):
@@ -1001,7 +1333,7 @@ class GroupedMLP(torch.nn.Module):
         # if config.moe_extended_tp:
         #     tp_size = parallel_state.get_tensor_and_expert_parallel_world_size()
         # else:
-        #     tp_size = parallel_state.get_tensor_model_parallel_world_size()
+        #     tp_size = parallel_state.get_tensor_model_parallel_size_world_size()
 
         fc1_output_size = args.ffn_hidden_size * self.num_local_experts
         if args.gated_linear_unit:
@@ -1096,3 +1428,63 @@ class MoELayer(torch.nn.Module):
         expert_output, mlp_linear_1,mlp_gelu,mlp_linear_2 = self.experts(self.dispatched_input, self.tokens_per_expert)
         # output, mlp_bias = self.token_dispatcher.token_unpermutation(expert_output, mlp_bias)
         return expert_output,mlp_linear_1,mlp_gelu,mlp_linear_2
+
+class Config:
+    # 通信框架（一般为 Megatron）
+    frame = "Megatron"
+    
+    # 全局训练相关
+    world_size = 32
+    global_batch = 1024
+    micro_batch = 1
+    epoch_num = 1
+
+    # 模型并行相关
+    tensor_model_parallel_size = 8
+    pipeline_model_parallel = 1  # 不启用流水线并行
+
+    # Transformer 模型参数（以 gpt_13B 为例）
+    num_layers = 40
+    seq_length = 4096
+    hidden_size = 5120
+    num_attention_heads = 40
+
+    # 前馈网络：通常设置为 4 倍 hidden_size
+    ffn_hidden_size = 4 * hidden_size  # 20480
+
+    # 位置编码和词表参数
+    max_position_embeddings = 4096
+    vocab_size = 50257  # 原始 GPT 词表大小
+
+    # 模型规模选择（13 表示 gpt_13B）
+    model_size = 13
+    model_name = "gpt_13B"
+
+    # 是否启用 Flash Attention 加速注意力计算（默认 False）
+    use_flash_attn = False
+
+    # 是否使用 swiglu 激活（默认 False）
+    swiglu = False
+
+    # 是否启用序列并行，默认可设为 False；若启用，则模型内部部分计算会仅在局部处理后再重复扩展
+    enable_sequence_parallel = False
+
+    # 计算时间统计文件（默认未指定）
+    comp_filepath = ""
+
+    # MoE（混合专家）相关参数，若不使用则保留默认值
+    num_experts = 1
+    moe_enable = False
+    # 如果启用 MoE，还可能需要设置 moe_router_topk、expert_model_parallel_size、moe_grouped_gemm 等，
+    # 此处默认不启用 MoE
+
+    # 是否开启激活重计算以降低显存占用（默认 False）
+    recompute_activations = False
+
+    # 数据类型（可选："float32", "float16", "bfloat16"），这里推荐使用 float16
+    dtype = "float16"
+    
+
+    # 其他参数，如是否使用分布式优化器、路由 topk 值、专家并行参数等，
+    # 根据实际需要添加。如果需要，可继续扩展该配置类。
+    

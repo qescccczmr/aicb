@@ -18,6 +18,7 @@ python -m workload_generator.megatron_workload \
   --num_layers=32 --seq_length=2048 --hidden_size=4096 --epoch_num=2 --use-distributed-optimizer --enable_sequence_parallel
 """
 from utils.utils import CommGroup, CommType, get_params, WorkloadWriter
+#import torch
 from workload_generator.workload_generator import WorkloadGenerator
 from workload_generator.mocked_model.MockedMegatron import MegatronModel
 from log_analyzer.log import LogItem
@@ -126,11 +127,7 @@ class MegatronWorkload(WorkloadGenerator):
 
     def with_pipeline_forward_backward(self):
         args = self.args
-        if args.workload_only:
-            rank = 0
-        else:
-            import torch
-            rank = torch.distributed.get_rank()
+        rank = torch.distributed.get_rank()
         world_size = args.world_size
         pp_rank = self.get_pp_rank(rank, world_size, args.pipeline_model_parallel)
         pp_num_warmup_microbatches = min(
@@ -433,10 +430,14 @@ class MegatronWorkload(WorkloadGenerator):
 
 if __name__ == "__main__":
     args = get_params()
+    print('----------------------------------------------------args:---------------------------------------------------------------')
+    print(args)
     model = MegatronModel(args)
     workload_generator = MegatronWorkload(args, model)
     workload = workload_generator()
+
     filename = f"{workload_generator.name}_{args.model_name}_sp_{args.enable_sequence_parallel}_iteration_{args.epoch_num}_computationEnable_{args.computation_enable}_{args.world_size}n.csv"
+    print('----------------------------------------------------filename:---------------------------------------------------------------')
     workload.dump(filename)
     if args.enable_visual:
             try:
@@ -446,3 +447,54 @@ if __name__ == "__main__":
             except ImportError: 
                 print("visualize_output is not available because required library is not found")
     # WorkloadWriter.write_workload(workload, args, filename)
+# class Args:
+#     padded_vocab_size = 51200
+#     hidden_size = 1024
+#     tensor_model_parallel_size = 4  # 4个设备做张量并行
+#     seq_length = 512
+#     micro_batch = 32
+#     num_attention_heads = 16
+#     ffn_hidden_size = 4096
+#     num_layers = 1  # 仅1层Transformer
+#     expert_model_parallel_size=4
+#     moe_router_topk=4
+#     num_experts=16
+#     moe_grouped_gemm=True
+#     enable_sequence_parallel=True
+#     computation_enable=False
+#     add_bias_linear=False
+#     moe_enable=False
+#     enable_sequence_parallel=True
+#     computation_enable=False
+#     add_bias_linear=False
+#     dp_num = 8
+#     pipeline_model_parallel=1
+#     tensor_model_parallel_size=4
+#     world_size=16
+#     epoch_num=2
+#     use_distributed_optimizer=True
+#     num_microbatches=2
+#     pp_rank=0
+#     frame="Megatron"
+#     enable_visual=False
+#     model_name="gpt-7B"
+    
+    
+    
+
+# args = Args()
+# print(args)
+# model = MegatronModel(args)
+# workload_generator = MegatronWorkload(args, model)
+# # 初始化阶段（模型参数广播、同步等）
+# workload_generator.init()
+
+# # 前向传播
+# workload_generator.forward()
+
+# # 反向传播
+# workload_generator.backward()
+
+# # 优化器步骤（梯度同步、参数更新等）
+# workload_generator.step()
+# workload_generator.workload.dump("/cpfs04/user/chengqinxiu/SimAI/aicb/workload_generator")

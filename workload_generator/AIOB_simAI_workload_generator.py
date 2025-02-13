@@ -47,9 +47,6 @@ class Work_Item:
     dp_comm: str = dataclasses.field(default="NONE")
     dp_comm_size: int = dataclasses.field(default=0)
     process_time: int = dataclasses.field(default=100)
-
-
-
 def _get_aiob_compute_time(compute_cache, forward_or_backward, stage):
     compute_time_map = compute_cache
     if stage == "grad":
@@ -111,7 +108,7 @@ class SIMAI_workload:
                     params = model.parameters()
                     param_count = sum(p.numel() for p in params)
                     layers.append(LayerInfo(model.layer_id, model.name, param_count))
-                if isinstance(model, MOEMLP):
+                if isinstance(model, GroupedMLP):
                     moe_params = model.parameters()
                     moe_param_count = sum(p.numel() for p in moe_params)
                     layers.append(LayerInfo(model.layer_id, model.name, moe_param_count))
@@ -777,25 +774,14 @@ class SIMAI_workload:
 
     def dump_file(self, filename):
         filename = filename + ".txt"
-
-        pp_comm_value = 2 * self.args.micro_batch * self.args.seq_length * self.args.hidden_size
-        if self.args.enable_sequence_parallel:
-            pp_comm_value /= self.args.tensor_model_parallel_size
-
-        pp_comm = (
-            f"pp_comm: {pp_comm_value}"
-            if self.args.pipeline_model_parallel != 1
-            else "pp_comm: 0"
-        )
         with open(filename, "w") as f:
             f.write((
                 f"HYBRID_TRANSFORMER_FWD_IN_BCKWD model_parallel_NPU_group: {self.args.tensor_model_parallel_size} "
                 f"ep: {self.args.expert_model_parallel_size} "
                 f"pp: {self.args.pipeline_model_parallel} "
-                f"vpp: {self.args.num_layers} "
                 f"ga: {self.ga_num} all_gpus: {self.args.world_size} "
-                f"checkpoints: 0 checkpoint_initiates: 0 "
-            ) + pp_comm + "\n")
+                f"checkpoints: 0 checkpoint_initiates: 0"
+            ) + "\n")
 
             f.write(str(len(self.workload)) + "\n")
             for item in self.workload:
@@ -871,12 +857,13 @@ class simAI_MicroTest:
 
 if __name__ == "__main__":
     args = get_params()
+    
     print(args)
     model = MegatronModel(args)
     result_dir = "results/workload/"
     if not os.path.isdir(result_dir):
         os.makedirs(result_dir)
-    filename = f"{args.gpu_type}-{args.model_name}-world_size{args.world_size}-tp{args.tensor_model_parallel_size}-pp{args.pipeline_model_parallel}-ep{args.expert_model_parallel_size}-gbs{args.global_batch}-mbs{args.micro_batch}-seq{args.seq_length}-MOE-{args.moe_enable}-GEMM-{args.moe_grouped_gemm}-flash_attn-{args.use_flash_attn}"
+    filename = f"{args.model_name}-world_size{args.world_size}-tp{args.tensor_model_parallel_size}-pp{args.pipeline_model_parallel}-ep{args.expert_model_parallel_size}-gbs{args.global_batch}-mbs{args.micro_batch}-seq{args.seq_length}-MOE-{args.moe_enable}-GEMM-{args.moe_grouped_gemm}-flash_attn-{args.use_flash_attn}"
     filepath = os.path.join(result_dir, filename)
     params = model.parameters()
     # work = SIMAI_workload(model, args, GPU_Tensor_core.A100, "gpt13B")
@@ -890,11 +877,11 @@ if __name__ == "__main__":
 
             comp_filepath = get_comp_out(args)
 
-            compute_cache = extract_averages(comp_filepath,args)
+            compute_cache = extract_averages(comp_filepath)
         else:
             print("comp_filepath:", args.comp_filepath)
             comp_filepath = args.comp_filepath
-            compute_cache = extract_averages(comp_filepath,args)
+            compute_cache = extract_averages(comp_filepath)
 
         print("compute_cache = {")
         for key, value in compute_cache.items():
