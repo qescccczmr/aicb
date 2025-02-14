@@ -23,7 +23,7 @@ The simulation experiment on GPT_7B_Megatron
 sh scripts/megatron_gpt.sh --nnodes 1 --node_rank 0 --nproc_per_node 2 --master_addr localhost --master_port 29500 -m 7 --world_size 2 --tensor_model_parallel_size 2 --pipeline_model_parallel 1 --frame Megatron --global_batch 16  --micro_batch 1 --seq_length 2048 --swiglu  --aiob_enable
 ```
 
- was conducted, and the results are as follows: the key-value pairs represent the operator names (such as "emb","layernorm_atten") and the corresponding operator execution time and memory usage. see  https://github.com/qescccczmr/aicb/results/megatron_7B
+ was conducted, and the results are as follows: the key-value pairs represent the operator names (such as "emb","layernorm_atten") and the corresponding operator execution time and memory usage. see  [**megatron_GPT7B**](https://github.com/qescccczmr/aicb/tree/master/results/megatron_7B)
 
 ```markdown
 train_iter:1
