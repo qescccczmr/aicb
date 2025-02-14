@@ -15,7 +15,75 @@ weight_memory = num_params * num_bytes_per_param  # Total weight memory
 
 ### 2. **Activation Memory Calculation**
 
-Activation memory is the memory required for storing activations (outputs of each layer) during the forward and backward passes.
+Activation memory is the memory required for storing activations (outputs of each layer) during the forward and backward passes. Reference：https://arxiv.org/abs/2205.05198
+
+The simulation experiment on GPT_7B_Megatron
+
+```
+sh scripts/megatron_gpt.sh --nnodes 1 --node_rank 0 --nproc_per_node 2 --master_addr localhost --master_port 29500 -m 7 --world_size 2 --tensor_model_parallel_size 2 --pipeline_model_parallel 1 --frame Megatron --global_batch 16  --micro_batch 1 --seq_length 2048 --swiglu  --aiob_enable
+```
+
+ was conducted, and the results are as follows: the key-value pairs represent the operator names (such as "emb","layernorm_atten") and the corresponding operator execution time and memory usage. see  https://github.com/qescccczmr/aicb/results/megatron_7B
+
+```markdown
+train_iter:1
+{
+    "Emb": {
+        "time_gpu_sum": 163679.3670654297,
+        "embedding weight_and_optimizer_memory_sum": 1773.0,
+        "embedding activation_memory_sum": 216.32421875,
+        "embedding report_theoretical_memory_sum": 1989.32421875
+    },
+    "layernorm atten": {
+        "time_gpu_sum": 18222.368147224188,
+        "layernorm  weight_and_optimizer_memory_sum": 2.53125,
+        "layernorm activation_memory_sum": 576.0,
+        "report_theoretical_memory_layernorm_sum": 578.53125
+    },
+    "atten": {
+        "time_gpu_all_sum": 274384.67390835285,
+        "time_gpu_atten_qkv_sum": 144994.78697776794,
+        "time_gpu_atten_core_qk_sum": 12763.807862997055,
+        "time_gpu_atten_core_softmax_sum": 100632.6711177826,
+        "time_gpu_atten_core_contex_sum": 6972.223952412605,
+        "time_gpu_atten_linear_sum": 9021.183997392654,
+        "atten weight_and_optimizer_memory_sum": 810102.515625,
+        "atten activation_memory_sum": 13104.0,
+        "report_theoretical_memory_atten_sum": 823206.515625
+    },
+    "Layernorm mlp": {
+        "time_gpu_all_sum": 2385.3439949452877,
+        "time_gpu_laynorm_sum": 2385.3439949452877,
+        "Layernorm mlp weight_and_optimizer_memory_sum": 2.53125,
+        "Layernorm mlp activation_memory_sum": 576.0,
+        "report_theoretical_memory_Layernorm mlp_sum": 578.53125
+    },
+    "mlp": {
+        "time_gpu_all_sum": 75325.72828233242,
+        "time_gpu_mlp_linear_1_sum": 33433.663964271545,
+        "time_gpu_mlp_gelu_sum": 22049.120351672173,
+        "time_gpu_mlp_linear_2_sum": 19842.943966388702,
+        "mlp weight_and_optimizer_memory_sum": 810102.515625,
+        "mlp activation_memory_sum": 13104.0,
+        "report_theoretical_memory_mlp_sum": 823206.515625
+    },
+    "laynorm post": {
+        "time_gpu_all_sum": 68.57600063085556,
+        "time_gpu_layernorm_post_sum": 68.57600063085556,
+        "layernorm_post weight_and_optimizer_memory_sum": 22502.84765625,
+        "layernorm_post activation_memory_sum": 16.0,
+        "report_theoretical_memory_layernorm_post_sum": 16.0703125
+    },
+    "logit_time": {
+        "time_gpu_logit_time_sum": 1946.9759464263916
+    },
+    "param_time": {
+        "time_gpu_param_time_sum": 25483.327865600586
+    }
+}
+```
+
+
 
 You can access the full suite of **SimAI** tools on **GitHub** via  [**SimAI@github**](https://github.com/aliyun/SimAI)
 
